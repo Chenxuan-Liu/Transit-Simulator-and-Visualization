@@ -1,0 +1,8 @@
+# Extensions to not include in repo
+*.o
+*.out
+*.pvt
+.DS_Store
+*.DS_Store
+duck
+ducks
