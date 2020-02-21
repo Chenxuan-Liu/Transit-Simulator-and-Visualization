@@ -81,6 +81,70 @@ TEST_F(DateTest, PrintDateTestsWithoutNewline) {
   *
   */
 
+TEST_F(DateTest,ConstructorTest1){
+  Date today;
+
+  std::time_t t = std::time(0);
+  std::tm* now = std::localtime(&t);
+  
+  //tm year's value is years since 1900
+  int yyyy_ = now->tm_year + 1900;
+  //tm month's value is zero-indexed
+  int mm_ = now->tm_mon+1;
+  //tm day's value is one-indexed
+  int dd_ = now->tm_mday;
+
+  Date ExpectDate(yyyy_,mm_,dd_);
+
+  EXPECT_STREQ(today.GetDate().c_str(), ExpectDate.GetDate().c_str());
+}
+
+TEST_F(DateTest,ConstructorTest2){
+  int _epoch = 999999999;
+  Date best_day = Date(_epoch);
+
+  std::time_t epoch_t = _epoch;
+  std::tm* yyyy_mm_dd = std::gmtime( &epoch_t );
+  
+  //tm year's value is years since 1900
+  int yyyy_ = yyyy_mm_dd->tm_year + 1900;
+  //tm month's value is zero-indexed
+  int mm_ = yyyy_mm_dd->tm_mon + 1;
+  //tm day's value is one-indexed
+  int dd_ = yyyy_mm_dd->tm_mday;
+
+  Date ExpectDate(yyyy_,mm_,dd_);
+  EXPECT_EQ(best_day.GetDate(),ExpectDate.GetDate());
+}
+
+TEST_F(DateTest,OperatorPlusTest){
+  Date y2k(1999, 12, 31);              // y2k
+  Date y2k_(2000, 1, 29);
+  Date ind_day(1776, 7, 4);            // US Independence
+  Date ind_day_(1776,6,30);
+  Date best_holiday(2018, 10, 31);     // Halloween
+  Date best_holiday_(2018,11,4);
+
+  EXPECT_EQ((y2k+29).GetDate(),y2k_.GetDate());
+  EXPECT_EQ((ind_day+(-4)).GetDate(),ind_day_.GetDate());
+  EXPECT_EQ((best_holiday+4).GetDate(),best_holiday_.GetDate());
+}
+
+TEST_F(DateTest,OperatorMinusTest){
+  Date y2k(1999, 12, 31);              // y2k
+  Date y2k_(2000, 1, 29);
+  Date ind_day(1776, 7, 4);            // US Independence
+  Date ind_day_(1776,6,30);
+  Date best_holiday(2018, 10, 31);     // Halloween
+  Date best_holiday_(2018,10,27);
+
+  EXPECT_EQ((y2k-(-29)).GetDate(),y2k_.GetDate());
+  EXPECT_EQ((ind_day-4).GetDate(),ind_day_.GetDate());
+  EXPECT_EQ((best_holiday-4).GetDate(),best_holiday_.GetDate());
+}
+
+
+
 TEST_F(DateTest, GetDateTest){  
   //Mutant 1
   Date y2k(1999, 12, 31);              // y2k
@@ -100,22 +164,6 @@ TEST_F(DateTest, GetDateTest){
   EXPECT_EQ(ind_day_.GetDate(), "1776-07-04");
   EXPECT_EQ(best_holiday_.GetDate(),"2018-01-01");
 
-  //Mutant 3
-  Date today;
-
-  std::time_t t = std::time(0);
-  std::tm* now = std::localtime(&t);
-  
-  //tm year's value is years since 1900
-  int yyyy_ = now->tm_year + 1900;
-  //tm month's value is zero-indexed
-  int mm_ = now->tm_mon+1;
-  //tm day's value is one-indexed
-  int dd_ = now->tm_mday;
-
-  Date ExpectDate(yyyy_,mm_,dd_);
-
-  EXPECT_STREQ(today.GetDate().c_str(), ExpectDate.GetDate().c_str());
 }
 
 TEST_F(DateTest,GetUsDateTest){
@@ -186,70 +234,19 @@ TEST_F(DateTest,PrintUsDateTest){
   
   testing::internal::CaptureStdout();
   y2k.PrintUsDate(false);
-  output1 = testing::internal::GetCapturedStdout();
-  
-  testing::internal::CaptureStdout();
-  ind_day.PrintUsDate(false);
-  output2 = testing::internal::GetCapturedStdout();
-  
-  testing::internal::CaptureStdout();
-  best_holiday.PrintUsDate(false);
-  output3 = testing::internal::GetCapturedStdout();
-  
-  EXPECT_EQ(output1, expected_out_1);
-  EXPECT_EQ(output2, expected_out_2);
-  EXPECT_EQ(output3, expected_out_3);
-}
-
-TEST_F(DateTest,MissingLeadingZeros){
-  Date y2k(1999, 02, 01);              // y2k
-  Date ind_day(1776, 7, 4);            // US Independence
-  Date best_holiday(2018, 1, 01);     // Halloween
-
-  
-
-  //Checking for printdate
-  std::string expected_out_1 = "1999-02-01";
-  std::string expected_out_2 = "1776-07-04";
-  std::string expected_out_3 = "2018-01-01";
-  
-  testing::internal::CaptureStdout();
-  y2k.PrintDate(false);
   std::string output1 = testing::internal::GetCapturedStdout();
   
   testing::internal::CaptureStdout();
-  ind_day.PrintDate(false);
+  ind_day.PrintUsDate(false);
   std::string output2 = testing::internal::GetCapturedStdout();
   
   testing::internal::CaptureStdout();
-  best_holiday.PrintDate(false);
+  best_holiday.PrintUsDate(false);
   std::string output3 = testing::internal::GetCapturedStdout();
   
   EXPECT_EQ(output1, expected_out_1);
   EXPECT_EQ(output2, expected_out_2);
   EXPECT_EQ(output3, expected_out_3);
-
-  //Checking for PrintUsDate
-  expected_out_1 = "02-01-1999";
-  expected_out_2 = "07-04-1776";
-  expected_out_3 = "01-01-2018";
-  
-  testing::internal::CaptureStdout();
-  y2k.PrintUsDate(false);
-  output1 = testing::internal::GetCapturedStdout();
-  
-  testing::internal::CaptureStdout();
-  ind_day.PrintUsDate(false);
-  output2 = testing::internal::GetCapturedStdout();
-  
-  testing::internal::CaptureStdout();
-  best_holiday.PrintUsDate(false);
-  output3 = testing::internal::GetCapturedStdout();
-  
-  EXPECT_EQ(output1, expected_out_1);
-  EXPECT_EQ(output2, expected_out_2);
-  EXPECT_EQ(output3, expected_out_3);
-
 }
   
 TEST_F(DateTest, DaysBetweenTests) {
@@ -257,60 +254,6 @@ TEST_F(DateTest, DaysBetweenTests) {
   EXPECT_EQ(last_day.GetUsDate(), "12-11-2018") << "Last day of class not setup properly";
   EXPECT_EQ(first_day.DaysBetween(last_day), 98) << "Days between is not calculated properly";
 }
-
-
-TEST_F(DateTest,MonthOffByOne){
-  Date today;
-
-  std::time_t t = std::time(0);
-  std::tm* now = std::localtime(&t);
-  
-  //tm year's value is years since 1900
-  int yyyy_ = now->tm_year + 1900;
-  //tm month's value is zero-indexed
-  int mm_ = now->tm_mon+1;
-  //tm day's value is one-indexed
-  int dd_ = now->tm_mday;
-
-  Date ExpectDate(yyyy_,mm_,dd_);
-
-  EXPECT_EQ(today.GetDate(),ExpectDate.GetDate());
-  EXPECT_EQ(today.GetUsDate(),ExpectDate.GetUsDate());
-  
-  testing::internal::CaptureStdout();
-  today.PrintDate(false);
-  std::string todayDate = testing::internal::GetCapturedStdout();
-
-  testing::internal::CaptureStdout();
-  ExpectDate.PrintDate(false);
-  std::string ExpectDate_ = testing::internal::GetCapturedStdout();
-
-  EXPECT_EQ(todayDate,ExpectDate_);
-  
-  testing::internal::CaptureStdout();
-  today.PrintUsDate(false);
-  todayDate = testing::internal::GetCapturedStdout();
-
-  testing::internal::CaptureStdout();
-  ExpectDate.PrintUsDate(false);
-  ExpectDate_ = testing::internal::GetCapturedStdout();
-
-  EXPECT_EQ(todayDate,ExpectDate_);
-  
-}
-
-
-
-TEST_F(DateTest,GetUsDateWrongFormat){
-  Date y2k(1999, 12, 31);              // y2k
-  Date ind_day(1776, 7, 4);            // US Independence
-  Date best_holiday(2018, 10, 31);     // Halloween
-
-  EXPECT_EQ(y2k.GetUsDate(), "12-31-1999");
-  EXPECT_EQ(ind_day.GetUsDate(), "07-04-1776");
-  EXPECT_EQ(best_holiday.GetUsDate(),"10-31-2018");
-}
-
 
 /**
   *
