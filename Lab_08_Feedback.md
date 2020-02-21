@@ -1,6 +1,6 @@
 ### Fuller Feedback for Lab 08
 
-Run on February 21, 08:47:49 AM.
+Run on February 21, 17:24:06 PM.
 
 
 #### System Files and Lab Directory Structure
@@ -9,43 +9,61 @@ Run on February 21, 08:47:49 AM.
 
 + Pass: Check that directory "labs" exists.
 
-+ Fail: Check that directory "labs/lab08_google_tests" exists.
++ Pass: Check that directory "labs/lab08_google_tests" exists.
 
-     "labs/lab08_google_tests" not found.
++ Pass: Make directory "Lab08_Testing".
 
-+ Skip: Make directory "Lab08_Testing".
-
-  This test was not run because of an earlier failing test.
-
-+ Skip: Change into directory "Lab08_Testing".
-
-  This test was not run because of an earlier failing test.
++ Pass: Change into directory "Lab08_Testing".
 
 
 #### Essential Files Exist
 
-+ Skip: Check that file "../labs/lab08_google_tests/date_unittest.cc" exists.
-
-  This test was not run because of an earlier failing test.
++ Pass: Check that file "../labs/lab08_google_tests/date_unittest.cc" exists.
 
 
 ### Testing correct implementation
 
-+ Skip: Copy directory "Lab08 files.".
++ Pass: Copy directory "Lab08 files.".
 
-  This test was not run because of an earlier failing test.
 
-+ Skip: Copy directory "Files for correct version".
 
-  This test was not run because of an earlier failing test.
++ Pass: Copy directory "Files for correct version".
 
-+ Skip: Change into directory "correct".
 
-  This test was not run because of an earlier failing test.
 
-+ Skip: Check that make compiles.
++ Pass: Change into directory "correct".
 
-  This test was not run because of an earlier failing test.
++ Fail: Check that make compiles.
+
+    Make compile fails with errors:.
+<pre>g++ -isystem ../../googletest/include -g -Wall -Wextra -pthread -c ./date.cc
+g++ -isystem ../../googletest/include -g -Wall -Wextra -pthread -c ./date_unittest.cc
+./date_unittest.cc: In member function virtual void DateTest_PrintUsDateTest_Test::TestBody():
+./date_unittest.cc:189:3: error: output1 was not declared in this scope
+   output1 = testing::internal::GetCapturedStdout();
+   ^~~~~~~
+./date_unittest.cc:193:3: error: output2 was not declared in this scope
+   output2 = testing::internal::GetCapturedStdout();
+   ^~~~~~~
+./date_unittest.cc:197:3: error: output3 was not declared in this scope
+   output3 = testing::internal::GetCapturedStdout();
+   ^~~~~~~
+In file included from ../../googletest/include/gtest/gtest.h:1874:0,
+                 from ./date_unittest.cc:1:
+./date_unittest.cc:199:3: error: template argument 1 is invalid
+   EXPECT_EQ(output1, expected_out_1);
+   ^
+./date_unittest.cc:200:3: error: template argument 1 is invalid
+   EXPECT_EQ(output2, expected_out_2);
+   ^
+./date_unittest.cc:201:3: error: template argument 1 is invalid
+   EXPECT_EQ(output3, expected_out_3);
+   ^
+Makefile:85: recipe for target 'date_unittest.o' failed
+make: *** [date_unittest.o] Error 1
+</pre>
+
+
 
 + Skip: Check that file "date_unittest" exists.
 
@@ -98,73 +116,51 @@ Run on February 21, 08:47:49 AM.
 
   This test was not run because of an earlier failing test.
 
-+ Skip: Check that a GoogleTest test passes.
-
-  This test was not run because of an earlier failing test.
-
 
 ### Testing Mutants
 
 
 #### Testing Mutant 1 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 1
 
 
 #### Testing Mutant 2 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 2
 
 
 #### Testing Mutant 3 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 3
 
 
 #### Testing Mutant 4 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 4
 
 
 #### Testing Mutant 5 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 5
 
 
 #### Testing Mutant 6 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 6
 
 
 #### Testing Mutant 7 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 7
 
 
 #### Testing Mutant 8 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 8
 
 
 #### Testing Mutant 9 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 9
 
