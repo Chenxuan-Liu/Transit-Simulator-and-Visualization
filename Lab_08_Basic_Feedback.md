@@ -1,6 +1,6 @@
 ### Basic Feedback for Lab 08
 
-Run on February 21, 17:27:11 PM.
+Run on February 22, 15:33:44 PM.
 
 
 #### System Files and Lab Directory Structure
@@ -33,76 +33,33 @@ Run on February 21, 17:27:11 PM.
 
 + Pass: Change into directory "correct".
 
-+ Pass: Check that make compiles.
++ Fail: Check that make compiles.
+
+    Make compile fails with errors:.
+<pre>g++ -isystem ../../googletest/include -g -Wall -Wextra -pthread -c ./date.cc
+g++ -isystem ../../googletest/include -g -Wall -Wextra -pthread -c ./date_unittest.cc
+ar rv gtest_main.a gtest-all.o gtest_main.o
+r - gtest-all.o
+r - gtest_main.o
+g++ -isystem ../../googletest/include -g -Wall -Wextra -pthread date.o date_unittest.o gtest_main.a -o date_unittest
+gtest_main.a: error adding symbols: Archive has no index; run ranlib to add one
+collect2: error: ld returned 1 exit status
+Makefile:88: recipe for target 'date_unittest' failed
+make: *** [date_unittest] Error 1
+</pre>
 
 
 
-+ Pass: Check that file "date_unittest" exists.
++ Skip: Check that file "date_unittest" exists.
 
-+ Pass: Get all google tests.
-    11 tests found.
+  This test was not run because of an earlier failing test.
 
++ Skip: Get all google tests.
 
+  This test was not run because of an earlier failing test.
 
 
 #### Results
-
-+ Pass: Check that a GoogleTest test passes.
-    passes the test: DateTest.PrintDateTests.
-
-
-
-+ Pass: Check that a GoogleTest test passes.
-    passes the test: DateTest.PrintDateTestsWithoutNewline.
-
-
-
-+ Pass: Check that a GoogleTest test passes.
-    passes the test: DateTest.ConstructorTest1.
-
-
-
-+ Pass: Check that a GoogleTest test passes.
-    passes the test: DateTest.ConstructorTest2.
-
-
-
-+ Pass: Check that a GoogleTest test passes.
-    passes the test: DateTest.OperatorPlusTest.
-
-
-
-+ Pass: Check that a GoogleTest test passes.
-    passes the test: DateTest.OperatorMinusTest.
-
-
-
-+ Pass: Check that a GoogleTest test passes.
-    passes the test: DateTest.GetDateTest.
-
-
-
-+ Pass: Check that a GoogleTest test passes.
-    passes the test: DateTest.GetUsDateTest.
-
-
-
-+ Pass: Check that a GoogleTest test passes.
-    passes the test: DateTest.PrintDateTest.
-
-
-
-+ Pass: Check that a GoogleTest test passes.
-    passes the test: DateTest.PrintUsDateTest.
-
-
-
-+ Pass: Check that a GoogleTest test passes.
-    passes the test: DateTest.DaysBetweenTests.
-
-
-
-+ Pass: 100.0% of the tests passed. Expected at least 100%.
 
 
 ### Testing Mutants
