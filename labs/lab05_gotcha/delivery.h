@@ -24,6 +24,7 @@ public:
   int get_days() { return days_to_deliver_; }
   static int get_count() { return delivery_count_;}
 
+  Delivery(const Delivery &package);
 protected:
   int protected_variable_;
 

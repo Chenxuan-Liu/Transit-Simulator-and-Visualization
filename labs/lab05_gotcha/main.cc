@@ -167,8 +167,8 @@ void RunMemoryDemo() {
     std::cout << "dyn_object address " << (int64_t) dyn_object << std::endl;
     std::cout << std::endl;
   }
-  // delete dyn_object;
-  // delete &dyn_object;
-  // delete local_object;
-  // delete &local_object;
+  delete dyn_object;
+  delete &dyn_object;
+  delete local_object;
+  delete &local_object;
 }

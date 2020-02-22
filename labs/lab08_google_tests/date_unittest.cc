@@ -253,6 +253,9 @@ TEST_F(DateTest, DaysBetweenTests) {
   EXPECT_EQ(first_day.GetUsDate(), "09-04-2018") << "First day of class not setup properly";
   EXPECT_EQ(last_day.GetUsDate(), "12-11-2018") << "Last day of class not setup properly";
   EXPECT_EQ(first_day.DaysBetween(last_day), 98) << "Days between is not calculated properly";
+  Date day1(2016,1,1);
+  Date day2(2016,3,1);
+  EXPECT_EQ(day1.DaysBetween(day2),60);
 }
 
 /**
