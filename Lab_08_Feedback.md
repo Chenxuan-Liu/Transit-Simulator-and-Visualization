@@ -1,6 +1,6 @@
 ### Fuller Feedback for Lab 08
 
-Run on February 23, 12:12:12 PM.
+Run on February 23, 13:12:58 PM.
 
 
 #### System Files and Lab Directory Structure
@@ -33,73 +33,76 @@ Run on February 23, 12:12:12 PM.
 
 + Pass: Change into directory "correct".
 
-+ Fail: Check that make compiles.
-
-    Make compile fails with errors:.
-<pre>g++ -isystem ../../googletest/include -g -Wall -Wextra -pthread -c ./date.cc
-g++ -isystem ../../googletest/include -g -Wall -Wextra -pthread -c ./date_unittest.cc
-ar rv gtest_main.a gtest-all.o gtest_main.o
-r - gtest-all.o
-r - gtest_main.o
-g++ -isystem ../../googletest/include -g -Wall -Wextra -pthread date.o date_unittest.o gtest_main.a -o date_unittest
-gtest_main.a: error adding symbols: Archive has no index; run ranlib to add one
-collect2: error: ld returned 1 exit status
-Makefile:88: recipe for target 'date_unittest' failed
-make: *** [date_unittest] Error 1
-</pre>
++ Pass: Check that make compiles.
 
 
 
-+ Skip: Check that file "date_unittest" exists.
++ Pass: Check that file "date_unittest" exists.
 
-  This test was not run because of an earlier failing test.
++ Pass: Get all google tests.
+    11 tests found.
 
-+ Skip: Get all google tests.
 
-  This test was not run because of an earlier failing test.
 
 
 #### Results
 
-+ Skip: Check that a GoogleTest test passes.
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.PrintDateTests.
 
-  This test was not run because of an earlier failing test.
 
-+ Skip: Check that a GoogleTest test passes.
 
-  This test was not run because of an earlier failing test.
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.PrintDateTestsWithoutNewline.
 
-+ Skip: Check that a GoogleTest test passes.
 
-  This test was not run because of an earlier failing test.
 
-+ Skip: Check that a GoogleTest test passes.
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.ConstructorTest1.
 
-  This test was not run because of an earlier failing test.
 
-+ Skip: Check that a GoogleTest test passes.
 
-  This test was not run because of an earlier failing test.
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.ConstructorTest2.
 
-+ Skip: Check that a GoogleTest test passes.
 
-  This test was not run because of an earlier failing test.
 
-+ Skip: Check that a GoogleTest test passes.
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.OperatorPlusTest.
 
-  This test was not run because of an earlier failing test.
 
-+ Skip: Check that a GoogleTest test passes.
 
-  This test was not run because of an earlier failing test.
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.OperatorMinusTest.
 
-+ Skip: Check that a GoogleTest test passes.
 
-  This test was not run because of an earlier failing test.
 
-+ Skip: Check that a GoogleTest test passes.
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.GetDateTest.
 
-  This test was not run because of an earlier failing test.
+
+
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.GetUsDateTest.
+
+
+
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.PrintDateTest.
+
+
+
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.PrintUsDateTest.
+
+
+
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.DaysBetweenTests.
+
+
+
++ Pass: 100.0% of the tests passed. Expected at least 100%.
 
 
 ### Testing Mutants
@@ -107,63 +110,45 @@ make: *** [date_unittest] Error 1
 
 #### Testing Mutant 1 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 1
 
 
 #### Testing Mutant 2 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 2
 
 
 #### Testing Mutant 3 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 3
 
 
 #### Testing Mutant 4 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 4
 
 
 #### Testing Mutant 5 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 5
 
 
 #### Testing Mutant 6 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 6
 
 
 #### Testing Mutant 7 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 7
 
 
 #### Testing Mutant 8 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 8
 
 
 #### Testing Mutant 9 for failure
 
-+ Skip: Abstract test class.
-
-  This test was not run because of an earlier failing test.
++ Pass: At least one test failed for Mutant 9
 
