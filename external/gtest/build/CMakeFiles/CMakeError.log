@@ -1,0 +1,59 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a5c6f/fast"
+make[3]: Entering directory '/home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_a5c6f.dir/build.make CMakeFiles/cmTC_a5c6f.dir/build
+make[4]: Entering directory '/home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a5c6f.dir/CheckSymbolExists.c.o
+/soft/gcc/7.1.0/Linux_x86_64/bin/gcc    -o CMakeFiles/cmTC_a5c6f.dir/CheckSymbolExists.c.o   -c /home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_a5c6f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a5c6f.dir/link.txt --verbose=1
+/soft/gcc/7.1.0/Linux_x86_64/bin/gcc      -rdynamic CMakeFiles/cmTC_a5c6f.dir/CheckSymbolExists.c.o  -o cmTC_a5c6f 
+CMakeFiles/cmTC_a5c6f.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_a5c6f.dir/build.make:97: recipe for target 'cmTC_a5c6f' failed
+make[4]: *** [cmTC_a5c6f] Error 1
+make[4]: Leaving directory '/home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_a5c6f/fast' failed
+make[3]: *** [cmTC_a5c6f/fast] Error 2
+make[3]: Leaving directory '/home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp'
+
+File /home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_ee41a/fast"
+make[3]: Entering directory '/home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_ee41a.dir/build.make CMakeFiles/cmTC_ee41a.dir/build
+make[4]: Entering directory '/home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ee41a.dir/CheckFunctionExists.c.o
+/soft/gcc/7.1.0/Linux_x86_64/bin/gcc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_ee41a.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_ee41a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ee41a.dir/link.txt --verbose=1
+/soft/gcc/7.1.0/Linux_x86_64/bin/gcc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_ee41a.dir/CheckFunctionExists.c.o  -o cmTC_ee41a -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_ee41a.dir/build.make:97: recipe for target 'cmTC_ee41a' failed
+make[4]: *** [cmTC_ee41a] Error 1
+make[4]: Leaving directory '/home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_ee41a/fast' failed
+make[3]: *** [cmTC_ee41a/fast] Error 2
+make[3]: Leaving directory '/home/liu00464/3081_s20/repo-liu00464/external/gtest/build/CMakeFiles/CMakeTmp'
+
+
