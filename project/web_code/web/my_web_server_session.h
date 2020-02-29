@@ -2,9 +2,17 @@
 #ifndef MY_WEB_SERVER_SESSION_H
 #define MY_WEB_SERVER_SESSION_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshadow"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wfloat-equal"
+#pragma GCC diagnostic ignored "-Wsuggest-override"
+#pragma GCC diagnostic ignored "-Woverloaded-virtual"
+
 #include "WebServer.h"
 #include "my_web_server_session_state.h"
 
+#pragma GCC diagnostic pop
 
 class MyWebServerSession : public JSONSession {
     public:
