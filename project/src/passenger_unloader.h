@@ -15,7 +15,7 @@ class Passenger;
 class PassengerUnloader {
  public:
   // UnloadPassengers returns the number of passengers removed from the bus.
-  int UnloadPassengers(const std::list<Passenger*>&
+  int UnloadPassengers(std::list<Passenger*>&
   passengers, Stop * current_stop);
 };
 #endif  // PASSENGER_UNLOADER_H_
