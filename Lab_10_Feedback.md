@@ -1,6 +1,6 @@
 ### Feedback for Lab 10
 
-Run on February 29, 16:44:41 PM.
+Run on March 01, 00:31:58 AM.
 
 
 ### Necessary Files and Structure
@@ -20,11 +20,13 @@ Run on February 29, 16:44:41 PM.
 
 + Pass: Run git ls-remote gather all branches in repo
 
-		47882f1428d215993aacd80e858a9198e3f4f5b6	refs/heads/devel
+		328bd24ccf76443bb136e558ba9c1ff4cedb1020	refs/heads/devel
 
 		dc6a7435a1d73fd06ddae862efc5e64b6810e425	refs/heads/fix/01-compilation-errors
 
-		0b5ac4e5ec25b8d8320d369fcb4ba2443c4118a5	refs/heads/master
+		ca0e3b7b47a5d8758c8f70f41e3b311738fc241a	refs/heads/fix/02-google-style-errors
+
+		ea95b005771b4419b63018204fbdd44029e5ffe2	refs/heads/master
 
 		47c5c85335549d27019fbee3ea2666a3ca21e86d	refs/heads/support-code
 
@@ -32,9 +34,11 @@ Run on February 29, 16:44:41 PM.
 
 + Pass: Checking for the correct number of branches
 
-Insufficient branches found (found=1, required=2):
+Sufficient branches found (found=2, required=2):
 
 fix/01-compilation-errors
+
+fix/02-google-style-errors
 
 
 #### Counting commits on devel
@@ -45,13 +49,21 @@ fix/01-compilation-errors
 
 + Pass: Gather commit history
 
-		[/Chenxuan] 2020-02-29 (HEAD -> devel, origin/devel) run feedback 
+		[/Chenxuan] 2020-03-01 (HEAD -> devel, origin/devel) Merge branch 'fix/02-google-style-errors' into devel 
+
+		[/Chenxuan] 2020-03-01 (origin/fix/02-google-style-errors, fix/02-google-style-errors) fix google style errors 
+
+		[/Chenxuan] 2020-03-01 Merge branch 'fix/02-google-style-errors' into devel 
+
+		[/Chenxuan] 2020-03-01 fix to make cpplint run 
+
+		[/Chenxuan] 2020-02-29 run feedback 
 
 		[/Chenxuan] 2020-02-29 Merge branch 'fix/01-compilation-errors' into devel 
 
 		[/Chenxuan] 2020-02-29 (origin/fix/01-compilation-errors, fix/01-compilation-errors) fix bug 
 
-		[/Chenxuan] 2020-02-28 (origin/master, origin/HEAD, master) copy src directory from lab10 
+		[/Chenxuan] 2020-02-28 copy src directory from lab10 
 
 		[/Chenxuan] 2020-02-28 delete src directory 
 
@@ -220,7 +232,7 @@ fix/01-compilation-errors
 
 
 + Pass: Check git commit history
-Sufficient commits (found=33,required=4)
+Sufficient commits (found=37,required=4)
 
 
 ### Git Issue Usage
