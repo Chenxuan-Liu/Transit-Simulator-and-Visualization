@@ -58,9 +58,71 @@ protected:
 /*******************************************************************************
  * Test Cases
  ******************************************************************************/
-TEST_F(PassengerTests, Constructor) {
+TEST_F(PassengerTests, Constructor1) {
   passenger = new Passenger();
   EXPECT_EQ(passenger->IsOnBus(), false);
   passenger->GetOnBus();
   EXPECT_EQ(passenger->IsOnBus(), true);
 };
+
+
+TEST_F(PassengerTests, NameCheck) {
+  passenger1 = new Passenger(12,"John Doe");
+  passenger2 = new Passenger(12,"Apple Bee");
+  std::string expected_output_1 = "Name: John Doe";
+  std::string expected_output_2 = "Name: Apple Bee";
+  testing::internal::CaptureStdout();
+  passenger1->Report(std::cout);
+  std::string output1 = testing::internal::GetCapturedStdout();
+  testing::internal::CaptureStdout();
+  passenger2->Report(std::cout);
+  std::string output2 = testing::internal::GetCapturedStdout();
+  int p1 = output1.find(expected_output_1);
+  int p2 = output2.find(expected_output_2);
+  EXPECT_GE(p1, 0);
+  EXPECT_GE(p2,0);
+};
+
+TEST_F(PassengerTests, GetDestination){
+  passenger1 = new Passenger(23, "Apple Bee");
+  EXPECT_EQ(passenger1->GetDestination(),23);
+};
+
+TEST_F(PassengerTests,GetTotalWait){
+  passenger1 = new Passenger(12,"Apple Bee");
+  EXPECT_EQ(passenger1->GetTotalWait(),0);
+  passenger1 -> Update();
+  EXPECT_EQ(passenger1->GetTotalWait(),1);
+  passenger1 -> GetOnBus();
+  EXPECT_EQ(passenger1->GetTotalWait(),2);
+  passenger1 -> Update();
+  EXPECT_EQ(passenger1->GetTotalWait(),3);
+};
+
+
+TEST_F(PassengerTests,Update){
+  passenger1 = new Passenger(12,"Apple Bee");
+  EXPECT_EQ(passenger1->GetTotalWait(),0);
+  passenger1 -> Update();
+  EXPECT_EQ(passenger1->GetTotalWait(),1);
+  passenger1 -> GetOnBus();
+  EXPECT_EQ(passenger1->GetTotalWait(),2);
+  passenger1 -> Update();
+  EXPECT_EQ(passenger1->GetTotalWait(),3);
+};
+
+TEST_F(PassengerTests,IsOnBus){
+  passenger1 = new Passenger(12,"Apple Bee");
+  EXPECT_EQ(passenger1->IsOnBus(),false);
+  passenger1 -> GetOnBus();
+  EXPECT_EQ(passenger1->IsOnBus(),true);
+};
+
+TEST_F(PassengerTests,GetOnBus){
+  passenger1 = new Passenger(12,"Apple Bee");
+  EXPECT_EQ(passenger1->IsOnBus(),false);
+  passenger1 -> GetOnBus();
+  EXPECT_EQ(passenger1->IsOnBus(),true);
+  EXPECT_EQ(passenger1->GetTotalWait(),1);
+};
+
