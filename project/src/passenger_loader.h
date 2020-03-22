@@ -3,8 +3,13 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
+<<<<<<< HEAD
 #ifndef PASSENGER_LOADER_H_
 #define PASSENGER_LOADER_H_
+=======
+#ifndef SRC_PASSENGER_LOADER_H_
+#define SRC_PASSENGER_LOADER_H_
+>>>>>>> support-code
 
 #include <list>
 #include "./passenger.h"
@@ -21,4 +26,8 @@ class PassengerLoader {
   int LoadPassenger(Passenger * new_passenger, int max_pass,
                     std::list<Passenger *> * passengers);
 };
+<<<<<<< HEAD
 #endif  // PASSENGER_LOADER_H_
+=======
+#endif  // SRC_PASSENGER_LOADER_H_
+>>>>>>> support-code

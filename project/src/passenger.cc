@@ -19,7 +19,10 @@ Passenger::Passenger(int destination_stop_id, std::string name) {
   count_++;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> support-code
 void Passenger::Update() {
   if ( IsOnBus() ) {
     time_on_bus_++;

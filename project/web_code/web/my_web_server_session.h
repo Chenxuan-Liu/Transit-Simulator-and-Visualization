@@ -2,6 +2,7 @@
 #ifndef MY_WEB_SERVER_SESSION_H
 #define MY_WEB_SERVER_SESSION_H
 
+<<<<<<< HEAD
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wshadow"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -13,6 +14,11 @@
 #include "my_web_server_session_state.h"
 
 #pragma GCC diagnostic pop
+=======
+#include "WebServer.h"
+#include "my_web_server_session_state.h"
+
+>>>>>>> support-code
 
 class MyWebServerSession : public JSONSession {
     public:
