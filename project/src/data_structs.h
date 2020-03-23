@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-/**
- * @file data_struct.h
- *
- * @copyright 2020 Chenxuan Liu, All rights reserved.
- */
-=======
-
->>>>>>> support-code
 #ifndef DATA_STRUCTS_H_
 #define DATA_STRUCTS_H_
 
@@ -40,9 +31,5 @@ struct RouteData {
     std::string id;
     std::vector<StopData> stops;
 };
-<<<<<<< HEAD
-#endif  // DATA_STRUCTS_H_
-=======
 
 #endif // DATA_STRUCTS_H_
->>>>>>> support-code

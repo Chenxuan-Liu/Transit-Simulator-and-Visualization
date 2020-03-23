@@ -3,13 +3,8 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
-<<<<<<< HEAD
-#ifndef STOP_H_
-#define STOP_H_
-=======
 #ifndef SRC_STOP_H_
 #define SRC_STOP_H_
->>>>>>> support-code
 
 #include <list>
 #include <iostream>
@@ -44,8 +39,4 @@ class Stop {
   // data structure implementation?
   // int passengers_present_;
 };
-<<<<<<< HEAD
-#endif  // STOP_H_
-=======
 #endif  // SRC_STOP_H_
->>>>>>> support-code
