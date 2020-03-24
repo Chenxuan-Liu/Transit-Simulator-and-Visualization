@@ -1,18 +1,20 @@
-### Feedback for Lab 10
+### Assessment for Lab 10
 
-Run on March 02, 09:56:06 AM.
+#### Total score: _100.0_ / _100_
+
+Run on March 03, 14:55:11 PM.
 
 
 ### Necessary Files and Structure
 
-+ Pass: Check that directory "labs" exists.
++  _10_ / _10_ : Pass: Check that directory "labs" exists.
 
-+ Pass: Check that directory "labs/lab10_advanced_git" exists.
++  _10_ / _10_ : Pass: Check that directory "labs/lab10_advanced_git" exists.
 
 
 ### Git Usage
 
-+ Pass: Run git ls-remote to check for existence of specific branch- Branch devel found
++  _10_ / _10_ : Pass: Run git ls-remote to check for existence of specific branch- Branch devel found
 
 + Pass: Checkout devel branch.
 
@@ -26,13 +28,13 @@ Run on March 02, 09:56:06 AM.
 
 		ca0e3b7b47a5d8758c8f70f41e3b311738fc241a	refs/heads/fix/02-google-style-errors
 
-		8aa25e5e6f42b2968a3703d92c380added964768	refs/heads/master
+		00941d90ff6487d40f82c7d668d65c125707f3d3	refs/heads/master
 
 		47c5c85335549d27019fbee3ea2666a3ca21e86d	refs/heads/support-code
 
 
 
-+ Pass: Checking for the correct number of branches
++  _10_ / _10_ : Pass: Checking for the correct number of branches
 
 Sufficient branches found (found=2, required=2):
 
@@ -231,7 +233,7 @@ fix/02-google-style-errors
 
 
 
-+ Pass: Check git commit history
++  _5_ / _5_ : Pass: Check git commit history
 Sufficient commits (found=37,required=4)
 
 
@@ -251,7 +253,7 @@ Sufficient commits (found=37,required=4)
 
 + Pass: Run ghi for total number of closed issues in Github repo (Found: 0)
 
-+ Pass: Run ghi for total number of issues in Github repo (Found: 2, Expected: 2) 
++  _10.0_ / _10_ : Pass: Run ghi for total number of issues in Github repo (Found: 2, Expected: 2) 
 
  [OPEN issue #2] :  Google style error [enhancement]
 
@@ -270,13 +272,15 @@ Sufficient commits (found=37,required=4)
 
 
 
-+ Pass: Check that directory "project/src" exists.
++  _10_ / _10_ : Pass: Check that directory "project/src" exists.
 
 + Pass: Change into directory "project/src".
 
-+ Pass: Check that file "makefile" exists.
++  _5_ / _5_ : Pass: Check that file "makefile" exists.
 
-+ Pass: Check that make compiles.
++  _30_ / _30_ : Pass: Check that make compiles.
 
 
+
+#### Total score: _100.0_ / _100_
 
