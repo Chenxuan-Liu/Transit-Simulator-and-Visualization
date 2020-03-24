@@ -24,3 +24,23 @@ STOP, Ridder Arena, 44.978058, -93.229176, .05
 STOP, Pleasant Street at Jones-Eddy Circle, 44.978366, -93.236038, .1
 STOP, Bruininks Hall, 44.974549, -93.236927, .3
 STOP, Blegen Hall, 44.972638, -93.243591, 0
+
+ROUTE, SightSeeing Out
+
+STOP, Fraser Hall, 44.975566, -93.237288, .40
+STOP, Pleasant St & Jones Hall, 44.978449, -93.235285, .30
+STOP, Sydney Hall, 44.979309, -93.234753, .20
+STOP, 15th Ave SE & 8th St SE, 44.983655, -93.231351, .10
+STOP, 15th Ave SE & Como Ave SE, 44.987630, -93.230301, .30
+STOP, Como Ave SE & 18th Ave SE, 44.987765, -93.227190, .05
+STOP, Como Ave SE & 22nd Ave SE, 44.987839, -93.221717, .20
+
+ROUTE, SightSeeing In
+
+STOP, Como Ave SE & 22nd Ave SE, 44.987942, -93.221911, .20
+STOP, Como Ave SE & 18th Ave SE, 44.987884, -93.226841, .05
+STOP, 15th Ave SE & Como Ave SE, 44.987549, -93.230477, .30
+STOP, 15th Ave SE & 8th St SE, 44.983970, -93.231322, .15
+STOP, 300-312 15th Ave SE, 44.979378, -93.234907, .20
+STOP, Pleasant St & Eddy Hall, 44.978211, -93.236059, .30
+STOP, Fraser Hall, 44.975566, -93.237288, .40
