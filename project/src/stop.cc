@@ -14,10 +14,6 @@ Stop::Stop(int id, double longitude,
   passengers_.clear();
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> support-code
 int Stop::LoadPassengers(Bus * bus) {
   int passengers_added = 0;
 
@@ -34,10 +30,6 @@ int Stop::LoadPassengers(Bus * bus) {
   return passengers_added;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> support-code
 int Stop::AddPassengers(Passenger * pass) {
   // we're using int here to aid potential future work:
   //  we may modify this to allow more multiple adds

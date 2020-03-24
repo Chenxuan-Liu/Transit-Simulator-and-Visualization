@@ -79,8 +79,7 @@ TEST_F(BusTests, Move){
     SetUp();
     route = new Route("Como Ave", stops, ps, 1, generator);
     bus = new Bus("MN transit", route, route, 60, 1);
-    EXPECT_EQ(bus -> Move(),true);
-    EXPECT_EQ(bus -> Move(), false);
+    EXPECT_EQ(bus -> Move(),false);
     TearDown();
 }
 
