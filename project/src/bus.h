@@ -3,8 +3,8 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
-#ifndef BUS_H_
-#define BUS_H_
+#ifndef SRC_BUS_H_
+#define SRC_BUS_H_
 
 #include <iostream>
 #include <list>
@@ -23,15 +23,36 @@ class PassengerLoader;
 class Route;
 class Stop;
 
+/**
+ * @brief The main class for thegeneration of buses.
+ *
+ * Calls to \ref Bus constructor to creat new bus object
+ *  This class contains all the bus related function.
+ */
+
+
 class Bus {
  public:
+/**
+  * @brief Creat a new bus object with a name, out route, in route, capacity, and speed.
+  *
+  * This function/constructor will be used to creat new bus object.
+  *
+  * @param[in] bus name
+  * @param[in] bus route goes outward
+  * @param[in] bus route goes inward
+  * @param[in] bus capacity, default is 60
+  * @param[in] bus speed, default is 1
+  *
+  * @return return a new bus object.
+  */
   Bus(std::string name, Route * out, Route * in, int capacity = 60,
                                                  double speed = 1);
   bool IsTripComplete();
   bool LoadPassenger(Passenger *);  // returning revenue delta
   bool Move();
   void Update();
-  void Report(std::ostream&);
+  virtual void Report(std::ostream&);
 
   // Vis Getters
   void UpdateBusData();
@@ -61,8 +82,7 @@ class Bus {
   Stop * next_stop_;
   // bool trip_complete_;  // [DERIVED data] when BOTH routes are at end, trip
   // is complete
-
   // Vis data for bus
   BusData bus_data_;
 };
-#endif  // BUS_H_
+#endif  // SRC_BUS_H_

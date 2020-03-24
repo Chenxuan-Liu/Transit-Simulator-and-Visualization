@@ -5,7 +5,7 @@
  */
 #include "src/passenger_loader.h"
 
-int PassengerLoader::LoadPassenger(Passenger * new_passenger, int max_pass,
+bool PassengerLoader::LoadPassenger(Passenger * new_passenger, int max_pass,
                                    std::list<Passenger *> * passengers) {
   // Normally would use a boolean, but for extensibility,
   // using count of those added_passenger

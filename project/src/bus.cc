@@ -3,6 +3,8 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
+
+
 #include "src/bus.h"
 
 Bus::Bus(std::string name, Route * out, Route * in,
@@ -29,7 +31,6 @@ bool Bus::IsTripComplete() {
   return is_complete;
 }
 
-
 bool Bus::LoadPassenger(Passenger * new_passenger) {
   bool added_passenger = false;
   if (loader_->LoadPassenger(new_passenger, passenger_max_capacity_,
@@ -39,7 +40,6 @@ bool Bus::LoadPassenger(Passenger * new_passenger) {
   }
   return added_passenger;
 }
-
 
 bool Bus::Move() {
   // update all passengers FIRST
@@ -77,25 +77,25 @@ bool Bus::Move() {
             if (!incoming_route_->IsAtEnd()) {
                 // Only get here if we are on our incoming route
 
+
                 passengers_handled += UnloadPassengers();  // unload
                 passengers_handled += next_stop_->LoadPassengers(this);  // load
 
-                // if any passengers on or off, all distance to next
-                // stop is left
-                // but, if we didn't handle any passengers here, any
-                // negative will
+                // if any passengers on or off, all distance
+                // to next stop is left
+                // but, if we didn't handle any passengers
+                // here, any negative will
                 // affect the distance remaining (see addition below)
 
                 if (passengers_handled != 0) {
                     distance_remaining_ = 0;
-                    did_move = true;  // We move if we have gotten passengers?
+                    did_move = true;  //  We move if we have gotten passengers?
                 }
 
-                current_route->NextStop();
+                current_route->ToNextStop();
                 next_stop_ = current_route->GetDestinationStop();
                 distance_remaining_ += current_route->GetNextStopDistance();
                 return did_move;
-
             } else {
                 speed_ = 0;
                 distance_remaining_ = 999;
@@ -119,8 +119,13 @@ bool Bus::Move() {
             did_move = true;
         }
 
-        current_route->NextStop();
-
+        if (next_stop_ -> LoadPassengers(this)
+            == 0 && UnloadPassengers() == 0) {
+          current_route -> ToNextStop();
+          current_route -> ToNextStop();
+        } else {
+          current_route->ToNextStop();
+        }
         // If we have incremented past the end of the outgoing route, set our
         // next stop to actually be the first stpo in incoming
         if (current_route->IsAtEnd()) {
@@ -162,7 +167,7 @@ void Bus::Report(std::ostream& out) {
 
 int Bus::UnloadPassengers() {
   int passengers_unloaded = 0;
-  unloader_->UnloadPassengers(passengers_, next_stop_);
+  unloader_->UnloadPassengers(&passengers_, next_stop_);
   return passengers_unloaded;
 }
 

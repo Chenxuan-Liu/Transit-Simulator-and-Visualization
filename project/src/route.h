@@ -4,8 +4,8 @@
  * @Copyright 2019 3081 Staff, All rights reserved.
  */
 
-#ifndef ROUTE_H_
-#define ROUTE_H_
+#ifndef SRC_ROUTE_H_
+#define SRC_ROUTE_H_
 
 #include <list>
 #include <iostream>
@@ -27,8 +27,8 @@ class Route {
   void Report(std::ostream&);
   bool IsAtEnd() const;
 
-  Stop *  PrevStop();  //  Returns stop before destination stop
-  void NextStop();  //  Change destination_stop_ to next stop
+  Stop *  PrevStop();  // Returns stop before destination stop
+  void ToNextStop();  // Change destination_stop_ to next stop
   Stop * GetDestinationStop() const;    // Get pointer to next stop
   double GetTotalRouteDistance() const;
   double GetNextStopDistance() const;
@@ -40,7 +40,7 @@ class Route {
   RouteData GetRouteData() const;
 
  private:
-  int GenerateNewPassengers();       //  generates passengers on its route
+  int GenerateNewPassengers();       // generates passengers on its route
   PassengerGenerator * generator_;
   std::list<Stop *> stops_;
   std::list<double> distances_between_;  // length = num_stops_ - 1
@@ -49,7 +49,8 @@ class Route {
   int destination_stop_index_;  // always starts at zero, no init needed
   Stop * destination_stop_;
   // double trip_time_; // derived data - total distance travelled on route
+
   RouteData route_data_;
 };
-#endif  // ROUTE_H_
+#endif  // SRC_ROUTE_H_
 
