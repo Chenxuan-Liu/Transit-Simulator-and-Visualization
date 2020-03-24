@@ -28,6 +28,7 @@ var numTimeStepsSlider;
 var numTimeSteps;
 
 var startButton;
+var pauseButton;
 var started;
 
 var simInfoYRectPos = 1; // Magic numbers for GUI elements
@@ -163,6 +164,13 @@ function setup() {
     startButton.style('height', '20px');
     startButton.mousePressed(start);    
 
+
+    pauseButton = createButton('Pause');
+    pauseButton.position(10, startYPos+20);
+    pauseButton.value('Pause');
+    pauseButton.style('width', '200px');
+    pauseButton.style('height', '20px');
+    pauseButton.mousePressed(pause);
     // Image/map information
     const options = {
         lat: 44.9765,
@@ -295,6 +303,21 @@ function drawGui() {
     }
 }
 
+function pause() {
+    if (started)
+    {
+        if (pauseButton.value!=="Resume"){
+            pauseButton.value="Resume";
+            pauseButton.elt.childNodes[0].nodeValue ="Resume";
+        }
+        else {
+            pauseButton.value="Pause";
+            pauseButton.elt.childNodes[0].nodeValue ="Pause";
+        }
+        socket.send(JSON.stringify({command: "pause"}));
+    }
+}
+
 function start() {
     for (let i = 0; i < busTimeOffsetsSliders.length; i++) {
         busTimeOffsets[i] = busTimeOffsetsSliders[i].value();
@@ -303,6 +326,7 @@ function start() {
     numTimeSteps = numTimeStepsSlider.value();
     socket.send(JSON.stringify({command: "start", numTimeSteps: numTimeSteps, timeBetweenBusses: busTimeOffsets}));
     started = true;
+    startButton.elt.disabled = true;
     elapsedTime = millis();
     startTime = millis();
 }
@@ -349,3 +373,4 @@ function drawInfo() {
         }
     }
 }
+

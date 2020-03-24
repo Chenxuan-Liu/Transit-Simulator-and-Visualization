@@ -13,8 +13,28 @@
 #include "src/regular_bus.h"
 #include "src/large_bus.h"
 
+/**
+ * @brief The main class to generate the bus.
+ *
+ * Calls to \ref Generate function to get a new instance of a bus object
+ *  This is a static call, not requiring an instance to invoke the method.
+ */
 class BusFactory {
  public:
-  static Bus * Generate(std::string name, Route* out, Route* in, int capacity, double speed);
+ /**
+  * @brief Generation of a bus with a name, route out and route in, capacity, and speed. 
+  *
+  * This function/constructor will be used for simulation purposes.
+  *
+  * @param[in] bus name
+  * @param[in] bus route goes outward
+  * @param[in] bus route goes inward
+  * @param[in] bus capacity, default is 60
+  * @param[in] bus speed, default is 1
+  *
+  * @return Bus object with name, route in, route out, capacity, and speed.
+  */
+  static Bus * Generate(std::string name, Route* out,
+  Route* in, int capacity, double speed);
 };
 #endif  // SRC_BUS_FACTORY_H_

@@ -5,8 +5,8 @@
  */
 #include "src/small_bus.h"
 
-void SmallBus::Report(std::ostream& out){
+void SmallBus::Report(std::ostream& out) {
     out << "Bus type: Small Bus"<< std::endl;
     out << "Bus capacity" << GetCapacity() << std::endl;
     Bus::Report(out);
-};
+}

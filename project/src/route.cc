@@ -5,6 +5,8 @@
  */
 #include "src/route.h"
 
+#include <vector>
+
 Route::Route(std::string name, Stop ** stops, double * distances, int num_stops,
                                                PassengerGenerator * generator) {
   for (int i = 0; i < num_stops; i++) {
@@ -99,9 +101,9 @@ void Route::NextStop() {
     destination_stop_ = *iter;
   } else {
       destination_stop_ = (*stops_.end());
-      //std::list<Stop *>::const_iterator iter = stops_.begin();
-      //std::advance(iter, num_stops_ - 1);
-      //destination_stop_ = *iter;
+      // std::list<Stop *>::const_iterator iter = stops_.begin();
+      // std::advance(iter, num_stops_ - 1);
+      // destination_stop_ = *iter;
   }
 }
 
