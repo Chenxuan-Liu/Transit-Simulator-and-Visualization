@@ -11,6 +11,7 @@
 
 #include "web_code/web/web_interface.h"
 #include "src/config_manager.h"
+#include "src/bus_factory.h"
 
 class Route;
 class Bus;

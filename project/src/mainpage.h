@@ -1,7 +1,7 @@
 /**
  * @file mainpage.h
  *
- * @copyright 2019 Chenxuan Liu, All rights reserved.
+ * @copyright 2020 Chenxuan Liu, All rights reserved.
  */
 
 #ifndef MAINPAGE_H_
@@ -13,6 +13,11 @@
  * The goal of this software project is to enhance a rudimentary transit simulator
  * in which the simulation can be controlled via external configuration(without code change)
  * and be visualized within a graphics window.\n
+ * \section design_sec Design
+ * This project is route-based, we know how often it is that a passenger will show up at the
+ * stop in each time unit. If there are more thanon bus is created, we take care of stops. Aftter
+ * a bus has passed a stop, it keeps going to the next stop on the route. Buses do not make more
+ * one trip through their routes, so the bus number keeps increasing. 
  * \section Discussion
  * To implement the BusFactory class, I uses the concrete one. In this way, I only need to implement 
  * 4 classes. First, generate a BusFactory class contains the generate function, then generate three 
