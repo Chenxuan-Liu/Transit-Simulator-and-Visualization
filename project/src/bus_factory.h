@@ -3,8 +3,8 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
-#ifndef SRC_BUS_FACTORY_H_
-#define SRC_BUS_FACTORY_H_
+#ifndef BUS_FACTORY_H_
+#define BUS_FACTORY_H_
 
 #include <string>
 
@@ -37,4 +37,4 @@ class BusFactory {
   static Bus * Generate(std::string name, Route* out,
   Route* in, int capacity, double speed);
 };
-#endif  // SRC_BUS_FACTORY_H_
+#endif  // BUS_FACTORY_H_

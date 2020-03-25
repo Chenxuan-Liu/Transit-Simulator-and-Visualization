@@ -3,8 +3,8 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
-#ifndef SRC_SMALL_BUS_H_
-#define SRC_SMALL_BUS_H_
+#ifndef SMALL_BUS_H_
+#define SMALL_BUS_H_
 
 #include <string>
 #include "src/bus.h"
@@ -40,4 +40,4 @@ class SmallBus:public Bus {
   */
   void Report(std::ostream&) override;
 };
-#endif  // SRC_SMALL_BUS_H_
+#endif  // SMALL_BUS_H_

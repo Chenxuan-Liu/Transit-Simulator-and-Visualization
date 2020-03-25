@@ -3,8 +3,8 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
-#ifndef WEB_VISUALIZATION_SIMULATOR_H_
-#define WEB_VISUALIZATION_SIMULATOR_H_
+#ifndef VISUALIZATION_SIMULATOR_H_
+#define VISUALIZATION_SIMULATOR_H_
 
 #include <vector>
 #include <list>
@@ -41,4 +41,4 @@ class VisualizationSimulator {
         bool pausestate = false;
 };
 
-#endif  // WEB_VISUALIZATION_SIMULATOR_H_
+#endif  // VISUALIZATION_SIMULATOR_H_
