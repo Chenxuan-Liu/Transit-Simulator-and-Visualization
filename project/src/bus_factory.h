@@ -35,6 +35,6 @@ class BusFactory {
   * @return Bus object with name, route in, route out, capacity, and speed.
   */
   static Bus * Generate(std::string name, Route* out,
-  Route* in, int capacity, double speed);
+  Route* in, double speed);
 };
 #endif  // BUS_FACTORY_H_
