@@ -3,8 +3,8 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
-#ifndef SRC_CONFIG_MANAGER_H_
-#define SRC_CONFIG_MANAGER_H_
+#ifndef CONFIG_MANAGER_H_
+#define CONFIG_MANAGER_H_
 
 #include <vector>
 #include <string>
@@ -25,4 +25,4 @@ class ConfigManager {
         std::vector<Route *> routes;
 };
 
-#endif  // SRC_CONFIG_MANAGER_H_
+#endif  // CONFIG_MANAGER_H_

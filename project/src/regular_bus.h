@@ -3,8 +3,8 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
-#ifndef SRC_REGULAR_BUS_H_
-#define SRC_REGULAR_BUS_H_
+#ifndef REGULAR_BUS_H_
+#define REGULAR_BUS_H_
 
 #include <string>
 #include "src/bus.h"
@@ -40,4 +40,4 @@ class RegularBus:public Bus {
   */
   void Report(std::ostream&) override;
 };
-#endif  // SRC_REGULAR_BUS_H_
+#endif  // REGULAR_BUS_H_
