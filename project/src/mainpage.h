@@ -4,8 +4,8 @@
  * @copyright 2019 Chenxuan Liu, All rights reserved.
  */
 
-#ifndef SRC_MAINPAGE_H_
-#define SRC_MAINPAGE_H_
+#ifndef MAINPAGE_H_
+#define MAINPAGE_H_
 
 /*! \mainpage Visual Transit System Simulator
  *
@@ -50,4 +50,4 @@
  * Click the "resume" button, the buses keeps going. 
  */
 
-#endif  // SRC_MAINPAGE_H_
+#endif  // MAINPAGE_H_

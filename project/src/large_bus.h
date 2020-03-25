@@ -3,8 +3,8 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
-#ifndef SRC_LARGE_BUS_H_
-#define SRC_LARGE_BUS_H_
+#ifndef LARGE_BUS_H_
+#define LARGE_BUS_H_
 
 #include <string>
 #include "src/bus.h"
@@ -40,4 +40,4 @@ class LargeBus:public Bus {
   */
   void Report(std::ostream&) override;
 };
-#endif  // SRC_LARGE_BUS_H_
+#endif  // LARGE_BUS_H_
