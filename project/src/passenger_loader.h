@@ -18,7 +18,7 @@ class PassengerLoader {
   // multiple passengers at a time
   // This allows us to change the Passenger Loader without having to change
   // the Bus.
-  int LoadPassenger(Passenger * new_passenger, int max_pass,
+  bool LoadPassenger(Passenger * new_passenger, int max_pass,
                     std::list<Passenger *> * passengers);
 };
 #endif  // SRC_PASSENGER_LOADER_H_

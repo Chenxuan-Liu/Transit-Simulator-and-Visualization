@@ -30,13 +30,7 @@ bool Bus::IsTripComplete() {
 }
 
 bool Bus::LoadPassenger(Passenger * new_passenger) {
-  bool added_passenger = false;
-  if (loader_->LoadPassenger(new_passenger, passenger_max_capacity_,
-      &passengers_) > 0) {
-    added_passenger = true;
-    // revenue_ += 0; //No revenue tracking at this time.
-  }
-  return added_passenger;
+  return loader_->LoadPassenger(new_passenger, passenger_max_capacity_, &passengers_);
 }
 
 bool Bus::Move() {
