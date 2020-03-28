@@ -4,10 +4,13 @@
 #include "bus.h"
 #include "route.h"
 
-VisualizationSimulator::VisualizationSimulator(WebInterface* webI, ConfigManager* configM) {
+#include <iostream>
+
+VisualizationSimulator::VisualizationSimulator(WebInterface* webI, ConfigManager* configM, std::ostream* out) {
     webInterface_ = webI;
     configManager_ = configM;
     paused_ = false;
+    out_ = out;
 }
 
 VisualizationSimulator::~VisualizationSimulator() {
@@ -32,7 +35,7 @@ void VisualizationSimulator::Start(const std::vector<int>& busStartTimings, cons
 
     prototypeRoutes_ = configManager_->GetRoutes();
     for (int i = 0; i < static_cast<int>(prototypeRoutes_.size()); i++) {
-        prototypeRoutes_[i]->Report(std::cout);
+        prototypeRoutes_[i]->Report(*out_);
         
         prototypeRoutes_[i]->UpdateRouteData();
         webInterface_->UpdateRoute(prototypeRoutes_[i]->GetRouteData());
@@ -102,7 +105,7 @@ void VisualizationSimulator::ExecuteUpdate() {
         
         webInterface_->UpdateBus(busses_[i]->GetBusData());
 
-        busses_[i]->Report(std::cout);
+        busses_[i]->Report(*out_);
     }
     
     std::cout << "~~~~~~~~~ Updating routes ";
@@ -113,7 +116,7 @@ void VisualizationSimulator::ExecuteUpdate() {
 
         webInterface_->UpdateRoute(prototypeRoutes_[i]->GetRouteData());
 
-        prototypeRoutes_[i]->Report(std::cout);
+        prototypeRoutes_[i]->Report(*out_);
     }
  
 }
