@@ -14,6 +14,11 @@ VisualizationSimulator::~VisualizationSimulator() {
 
 }
 
+void VisualizationSimulator::TogglePause() {
+    std::cout << "Toggling Pause" << std::endl;
+    paused_ = !paused_;
+}
+
 void VisualizationSimulator::Start(const std::vector<int>& busStartTimings, const int& numTimeSteps) {
     busStartTimings_ = busStartTimings;
     numTimeSteps_ = numTimeSteps;

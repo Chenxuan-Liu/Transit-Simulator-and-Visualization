@@ -313,6 +313,10 @@ function start() {
     startTime = millis();
 }
 
+function pause() {
+    socket.send(JSON.stringify({command: "pause"}));
+}
+
 function initRouteSliders() {
     
     for (let i = 0; i < numRoutes; i++) {

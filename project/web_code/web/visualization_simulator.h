@@ -20,6 +20,7 @@ class VisualizationSimulator {
         void Start(const std::vector<int>&, const int&);
         bool Update();
         bool CanUpdate();
+        void TogglePause();
     private:
         void ExecuteUpdate();
         WebInterface* webInterface_;
