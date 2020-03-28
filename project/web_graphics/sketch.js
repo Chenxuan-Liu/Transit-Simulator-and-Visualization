@@ -28,7 +28,9 @@ var numTimeStepsSlider;
 var numTimeSteps;
 
 var startButton;
-var started;
+var started = false;
+var pauseButton;
+var paused = false;
 
 var simInfoYRectPos = 1; // Magic numbers for GUI elements
 var simInfoYPos = 15;
@@ -314,7 +316,15 @@ function start() {
 }
 
 function pause() {
-    socket.send(JSON.stringify({command: "pause"}));
+    if (started){
+        socket.send(JSON.stringify({command: "pause"}));
+        paused = !paused;
+        if (paused) {
+            pauseButton.elt.childNodes[0].nodeValue = 'Resume';
+        } else {
+            pauseButton.elt.childNodes[0].nodeValue = 'Pause';
+        }
+    }
 }
 
 function initRouteSliders() {
