@@ -6,8 +6,8 @@
 
 class BusFactory {
     public:
-        BusFactory(std::string type, Route* inbound, Route* outbound, double speed) : 
-            type_(type), inbound_(inbound), outbound_(outbound), speed_(speed) { }
+        BusFactory(std::string type, Route* outbound, Route* inbound, double speed) : 
+            type_(type), outbound_(outbound), inbound_(inbound),  speed_(speed) { }
         Bus* Generate();
     private:
         std::string type_;
