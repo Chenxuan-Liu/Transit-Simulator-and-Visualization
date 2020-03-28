@@ -9,6 +9,6 @@ Bus* BusFactory::Generate(std::string name) {
         return new LargeBus(name, outbound_, inbound_, speed_);
     } else {
         std::cout << "type_: " << type_ << std::endl;
-        throw std::exception("Type must be small, medium or large");
+        throw "Type must be small, medium or large";
     }
 }
