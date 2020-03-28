@@ -20,117 +20,86 @@ Bus::Bus(std::string name, Route * out, Route * in,
 }
 
 bool Bus::IsTripComplete() {
-  bool is_complete = false;
+  return outgoing_route_->IsAtEnd() && incoming_route_->IsAtEnd();
+}
 
-  // short-circuit: outgoing has to be completed first
-  if (outgoing_route_->IsAtEnd() && incoming_route_->IsAtEnd()) {
-    is_complete = true;
+Route* Bus::CurrentRoute() {
+  // Figure out if we're on the outgoing or incoming route
+  if (!outgoing_route_->IsAtEnd()) {
+    return outgoing_route_;
   }
+  return incoming_route_;
+}
 
-  return is_complete;
+void Bus::ToNextStop() {
+  (CurrentRoute())->ToNextStop();
+  if (!IsTripComplete()) {
+    // NOTE: it's important we call CurrentRoute() again, as NextStop() may have caused it to change.
+    next_stop_ = (CurrentRoute())->GetDestinationStop();
+    distance_remaining_ += (CurrentRoute())->GetNextStopDistance(); //now we have to go to the next stop
+    // note, if distance_remaining_ was negative because we had extra time left over, that extra
+    // time is effectively counted towards the next stop
+  } else {
+    next_stop_ = NULL;
+    distance_remaining_ = 999;
+  }
+}
+
+double Bus::UpdateDistance() {
+  // Updates the distance remaining and returns the effective speed of the bus
+  // Bus does not move if speed is negative or bus is at end of route
+  if (IsTripComplete()) return 0;
+  if (speed_ < 0) return 0;
+  distance_remaining_ -= speed_;
+  return speed_;
 }
 
 bool Bus::LoadPassenger(Passenger * new_passenger) {
   return loader_->LoadPassenger(new_passenger, passenger_max_capacity_, &passengers_);
 }
 
+int Bus::HandleBusStop(){
+  // Return the number of passengers handled
+  // write whether or not we moved in this step to local variable passed in
+
+  // This function handles the stuff we have to do AT A MINIMUM when we
+  // arrive at a bus stop
+
+  int passengers_handled = 0;
+  passengers_handled += UnloadPassengers();
+  passengers_handled += next_stop_->LoadPassengers(this);
+
+  // if any passengers on or off, all distance to next stop is left
+  // but, if we didn't handle any passengers here, any negative will
+  // affect the distance remaining (see addition below)
+
+  if (passengers_handled != 0) {
+      distance_remaining_ = 0;
+  }
+
+  return passengers_handled;
+}
+
 bool Bus::Move() {
   // update all passengers FIRST
   // new passengers will get "updated" when getting on the bus
-  for (std::list<Passenger *>::iterator it = passengers_.begin();
-                                  it != passengers_.end(); it++) {
-    (*it)->Update();
+  for(auto* passenger : passengers_) {
+    passenger->Update();
   }
 
-  bool did_move = true;
+  double speed = UpdateDistance(); //actually move
 
-
-  // travel (happens in all cases, neg distance indicates ready to unload/load)
-
-
-  if (speed_ > 0) {
-    distance_remaining_ -= speed_;
-  } else {
-    did_move = false;
+  if(!IsTripComplete() && distance_remaining_ <= 0) {
+    int passengers_handled = HandleBusStop(); //load & unload
+    if (passengers_handled >= 0) {
+      distance_remaining_ = 0; 
+      // if we spent time (un)loading, we don't get to count excess
+      // speed towards next stop
+    }
+    ToNextStop(); //switch to next stop
   }
-  int passengers_handled = 0;  // counts those on or off bus at this location
 
-
-  // if there's no more distance
-  // (OFF BY ONE ERROR ISSUE - do we unload if exactly zero after a move?
-  // or only if there was time remaining?)
-
-  if (distance_remaining_ <= 0) {
-    did_move = false;
-
-    // Determine which route we are on
-    Route * current_route = outgoing_route_;
-    if (outgoing_route_->IsAtEnd()) {
-      current_route = incoming_route_;
-      if (!incoming_route_->IsAtEnd()) {
-        // Only get here if we are on our incoming route
-                  
-
-        passengers_handled += UnloadPassengers();  // unload
-        passengers_handled += next_stop_->LoadPassengers(this);  // load
-
-        // if any passengers on or off, all distance to next stop is left
-        // but, if we didn't handle any passengers here, any negative will
-        // affect the distance remaining (see addition below)
-
-        if (passengers_handled != 0) {
-          distance_remaining_ = 0;
-          did_move = true; // We move if we have gotten passengers?
-        } else {
-          std::cout << "Skipping stop!!!" << std::endl;
-        }
-
-        current_route->ToNextStop();
-        next_stop_ = current_route->GetDestinationStop();
-        distance_remaining_ += current_route->GetNextStopDistance();
-        return did_move;
-            
-      } else {
-        speed_ = 0;
-        distance_remaining_ = 999;
-        return did_move;
-      }
-    }
-
-
-    // Only get here if we are on outgoing route
-
-
-    passengers_handled += UnloadPassengers();  // unload
-    passengers_handled += next_stop_->LoadPassengers(this);  // load
-
-    // if any passengers on or off, all distance to next stop is left
-    // but, if we didn't handle any passengers here, any negative will
-    // affect the distance remaining (see addition below)
-
-    if (passengers_handled != 0) {
-        distance_remaining_ = 0;
-        did_move = true;
-    } else {
-      std::cout << "Skipping stop!!" << std::endl;
-    }
-        
-    current_route->ToNextStop();
-
-    // If we have incremented past the end of the outgoing route, set our
-    // next stop to actually be the first stpo in incoming
-    if (current_route->IsAtEnd()) {
-      next_stop_ = incoming_route_->GetDestinationStop();
-      distance_remaining_ += incoming_route_->GetNextStopDistance();
-    } else {
-      next_stop_ = current_route->GetDestinationStop();
-            
-      // adding here in case negative time still remains
-      // // (see passengers_handled above)
-      distance_remaining_ += current_route->GetNextStopDistance();
-    }
-  }
-  return did_move;
+  return (speed > 0) ;
 }
 
 

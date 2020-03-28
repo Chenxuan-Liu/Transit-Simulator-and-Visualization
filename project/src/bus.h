@@ -43,6 +43,10 @@ class Bus {
 
  private:
   int UnloadPassengers();  // returning revenue delta
+  int HandleBusStop();
+  void ToNextStop();
+  double UpdateDistance();
+  Route* CurrentRoute();
   // bool Refuel();
   PassengerUnloader * unloader_;
   PassengerLoader * loader_;
