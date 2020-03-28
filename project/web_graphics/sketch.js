@@ -159,9 +159,15 @@ function setup() {
 
     startButton = createButton('Start');
     startButton.position(10, startYPos);
-    startButton.style('width', '200px');
+    startButton.style('width', '100px');
     startButton.style('height', '20px');
-    startButton.mousePressed(start);    
+    startButton.mousePressed(start); 
+    
+    pauseButton = createButton('Pause');
+    pauseButton.position(110, startYPos);
+    pauseButton.style('width', '100px');
+    pauseButton.style('height', '20px');
+    pauseButton.mousePressed(pause);
 
     // Image/map information
     const options = {
