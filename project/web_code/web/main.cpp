@@ -7,6 +7,8 @@
 #include "my_web_server_command.h"
 #include "my_web_server_session.h"
 #include "my_web_server.h"
+#include <iostream>
+#include <fstream>
 
 //#define _USE_MATH_DEFINES
 //#include <cmath>
@@ -18,6 +20,17 @@ int main(int argc, char**argv) {
 
 	if (argc > 1) {
 		int port = std::atoi(argv[1]);
+		std::streambuf* buffer;
+		if (argc > 2) {
+			std::string filename = argv[2];
+			std::ofstream of;
+			of.open(filename);
+			buffer = of.rdbuf();
+		} else {
+			buffer = std::cout.rdbuf();
+		}
+		std::ostream out(buffer);
+
 		MyWebServerSessionState state;
 
         MyWebServer* myWS = new MyWebServer();
