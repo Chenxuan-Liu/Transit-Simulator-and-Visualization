@@ -121,9 +121,7 @@ void Bus::Report(std::ostream& out) {
 }
 
 int Bus::UnloadPassengers() {
-  int passengers_unloaded = 0;
-  unloader_->UnloadPassengers(passengers_, next_stop_);
-  return passengers_unloaded;
+  return unloader_->UnloadPassengers(passengers_, next_stop_);
 }
 
 
