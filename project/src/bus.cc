@@ -6,12 +6,13 @@
 #include "src/bus.h"
 
 Bus::Bus(std::string name, Route * out, Route * in,
-                         int capacity, double speed) {
+          int capacity, double speed, std::string type) {
   name_ = name;
   outgoing_route_ = out;
   incoming_route_ = in;
   passenger_max_capacity_ = capacity;
   speed_ = speed;
+  type_ = type;
   distance_remaining_ = 0;
   next_stop_ = out->GetDestinationStop();
   unloader_ = new PassengerUnloader;
@@ -137,6 +138,7 @@ void Bus::Update() {  // using common Update format
 void Bus::Report(std::ostream& out) {
   out << "Name: " << name_ << std::endl;
   out << "Speed: " << speed_ << std::endl;
+  out << "Bus Type: " << type_ << std::endl;
   out << "Distance to next stop: " << distance_remaining_ << std::endl;
   out << "\tPassengers (" << passengers_.size() << "): " << std::endl;
   for (std::list<Passenger *>::iterator it = passengers_.begin();
