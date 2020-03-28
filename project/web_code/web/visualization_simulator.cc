@@ -7,6 +7,7 @@
 VisualizationSimulator::VisualizationSimulator(WebInterface* webI, ConfigManager* configM) {
     webInterface_ = webI;
     configManager_ = configM;
+    paused_ = false;
 }
 
 VisualizationSimulator::~VisualizationSimulator() {
@@ -34,7 +35,28 @@ void VisualizationSimulator::Start(const std::vector<int>& busStartTimings, cons
 
 }
 
-void VisualizationSimulator::Update() {
+bool VisualizationSimulator::Update() {
+    // Code called to update simulator. Will first check if 
+    // we are in a state where we can update (e.g., not paused, not finished)
+    // then call ExecuteUpdate() to actually call update if possible
+    // return whether or not ExecuteUpdate() was called
+    bool can_update = CanUpdate();
+    if (can_update) {
+        ExecuteUpdate();
+    }
+    return can_update;
+}
+
+bool VisualizationSimulator::CanUpdate() {
+    // Check whether or not simulator can update 
+    // maybe unable to update because paused, terminated, etcetra
+    // only cares about whether or not it is paused right now
+    return !paused_;
+}
+
+void VisualizationSimulator::ExecuteUpdate() {
+    // This function has the same text as what Update() used to have
+    // I added a gating mechanism for pause functionality
     simulationTimeElapsed_++;
 
     std::cout << "~~~~~~~~~~ The time is now " << simulationTimeElapsed_;

@@ -18,9 +18,10 @@ class VisualizationSimulator {
         ~VisualizationSimulator();
 
         void Start(const std::vector<int>&, const int&);
-        void Update();
-
+        bool Update();
+        bool CanUpdate();
     private:
+        void ExecuteUpdate();
         WebInterface* webInterface_;
         ConfigManager* configManager_;
        
@@ -33,6 +34,7 @@ class VisualizationSimulator {
         std::vector<Bus *> busses_;
 
         int busId = 1000;
+        bool paused_;
 };
 
 #endif // VISUALIZATION_SIMULATOR_H_
