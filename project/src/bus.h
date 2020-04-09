@@ -26,7 +26,7 @@ class Stop;
 class Bus {
  public:
   Bus(std::string name, Route * out, Route * in, int capacity = 60,
-                                                 double speed = 1);
+                double speed = 1, std::string type = "Medium");
   bool IsTripComplete();
   bool LoadPassenger(Passenger *);  // returning revenue delta
   bool Move();
@@ -43,6 +43,10 @@ class Bus {
 
  private:
   int UnloadPassengers();  // returning revenue delta
+  int HandleBusStop();
+  void ToNextStop();
+  double UpdateDistance();
+  Route* CurrentRoute();
   // bool Refuel();
   PassengerUnloader * unloader_;
   PassengerLoader * loader_;
@@ -53,6 +57,7 @@ class Bus {
   // double fuel_;   // may not be necessary for our simulation
   // double max_fuel_;
   std::string name_;
+  std::string type_;
   double speed_;  // could also be called "distance travelled in one time step"
   Route * outgoing_route_;
   Route * incoming_route_;

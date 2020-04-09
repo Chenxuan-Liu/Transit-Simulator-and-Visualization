@@ -26,21 +26,15 @@ Route * Route::Clone() {
   // constructor needs Stop **, we have list<stop>
   Stop ** stops = new Stop *[stops_.size()];
   int stop_index = 0;
-  for (std::list<Stop *>::iterator it = stops_.begin();
-      it != stops_.end();
-      it++) {
-    stops[stop_index] = *it;
-    stop_index++;
+  for(auto* stop : stops_) {
+    stops[stop_index++] = stop;
   }
 
   // constructor needs distance *, we have list<double>
   double * distances = new double[distances_between_.size()];
   int distance_index = 0;
-  for (std::list<double>::iterator it = distances_between_.begin();
-      it != distances_between_.end();
-      it++) {
-    distances[distance_index] = *it;
-    distance_index++;
+  for(auto distance : distances_between_) {
+    distances[distance_index++] = distance;
   }
 
   return new Route(name_, stops, distances, num_stops_, generator_);
@@ -48,9 +42,8 @@ Route * Route::Clone() {
 
 void Route::Update() {
   GenerateNewPassengers();
-  for (std::list<Stop *>::iterator it = stops_.begin();
-                               it != stops_.end(); it++) {
-    (*it)->Update();
+  for(auto* stop : stops_) {
+    stop->Update();
   }
   UpdateRouteData();
 }
@@ -59,12 +52,11 @@ void Route::Report(std::ostream& out) {
   out << "Name: " << name_ << std::endl;
   out << "Num stops: " << num_stops_ << std::endl;
   int stop_counter = 0;
-  for (std::list<Stop *>::const_iterator it = stops_.begin();
-                                   it != stops_.end(); it++) {
+  for (auto* stop: stops_) {
     if (stop_counter == destination_stop_index_) {
       out << "\t\t vvvvv Next Stop vvvvv" << std::endl;
     }
-    (*it)->Report(out);
+    stop->Report(out);
     stop_counter++;
   }
 }
@@ -87,7 +79,7 @@ Stop * Route::PrevStop() {
     }
 }
 
-void Route::NextStop() {
+void Route::ToNextStop() {
   destination_stop_index_++;
 
   if (destination_stop_index_ < num_stops_) {
@@ -116,11 +108,9 @@ Stop * Route::GetDestinationStop() const {
 }
 
 double Route::GetTotalRouteDistance() const {
-  int total_distance = 0;
-  for (std::list<double>::const_iterator iter = distances_between_.begin();
-      iter != distances_between_.end();
-      iter++) {
-    total_distance += *iter;
+  double total_distance = 0;
+  for(auto distance: distances_between_) {
+    total_distance += distance;
   }
   return total_distance;
 }
@@ -131,7 +121,7 @@ double Route::GetNextStopDistance() const {
       std::advance(iter, destination_stop_index_-1);
       return *iter;  // resolving the iterator gets you the Stop * from the list
   // return distances_between_[destination_stop_index_ - 1];
-  // CAN'T DO THIS (return statement above) ; see NextStop()
+  // CAN'T DO THIS (return statement above) ; see ToNextStop()
   } else {
         return 0;
     }

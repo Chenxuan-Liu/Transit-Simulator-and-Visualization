@@ -14,13 +14,15 @@ class Stop;
 
 class VisualizationSimulator {
     public:
-        VisualizationSimulator(WebInterface*, ConfigManager*);
+        VisualizationSimulator(WebInterface*, ConfigManager*, std::ostream*);
         ~VisualizationSimulator();
 
         void Start(const std::vector<int>&, const int&);
-        void Update();
-
+        bool Update();
+        bool CanUpdate();
+        void TogglePause();
     private:
+        void ExecuteUpdate();
         WebInterface* webInterface_;
         ConfigManager* configManager_;
        
@@ -33,6 +35,8 @@ class VisualizationSimulator {
         std::vector<Bus *> busses_;
 
         int busId = 1000;
+        bool paused_;
+        std::ostream* out_;
 };
 
 #endif // VISUALIZATION_SIMULATOR_H_

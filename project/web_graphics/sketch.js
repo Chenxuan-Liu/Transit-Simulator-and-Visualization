@@ -28,7 +28,9 @@ var numTimeStepsSlider;
 var numTimeSteps;
 
 var startButton;
-var started;
+var started = false;
+var pauseButton;
+var paused = false;
 
 var simInfoYRectPos = 1; // Magic numbers for GUI elements
 var simInfoYPos = 15;
@@ -159,9 +161,15 @@ function setup() {
 
     startButton = createButton('Start');
     startButton.position(10, startYPos);
-    startButton.style('width', '200px');
+    startButton.style('width', '100px');
     startButton.style('height', '20px');
-    startButton.mousePressed(start);    
+    startButton.mousePressed(start); 
+    
+    pauseButton = createButton('Pause');
+    pauseButton.position(110, startYPos);
+    pauseButton.style('width', '100px');
+    pauseButton.style('height', '20px');
+    pauseButton.mousePressed(pause);
 
     // Image/map information
     const options = {
@@ -305,6 +313,18 @@ function start() {
     started = true;
     elapsedTime = millis();
     startTime = millis();
+}
+
+function pause() {
+    if (started){
+        socket.send(JSON.stringify({command: "pause"}));
+        paused = !paused;
+        if (paused) {
+            pauseButton.elt.childNodes[0].nodeValue = 'Resume';
+        } else {
+            pauseButton.elt.childNodes[0].nodeValue = 'Pause';
+        }
+    }
 }
 
 function initRouteSliders() {
