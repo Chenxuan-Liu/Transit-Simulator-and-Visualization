@@ -1,0 +1,67 @@
+\hypertarget{classBusFactory}{}\section{Bus\+Factory Class Reference}
+\label{classBusFactory}\index{Bus\+Factory@{Bus\+Factory}}
+
+
+The main class to generate the bus.  
+
+
+
+
+{\ttfamily \#include $<$bus\+\_\+factory.\+h$>$}
+
+
+
+Collaboration diagram for Bus\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{classBusFactory__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classBus}{Bus} $\ast$ \hyperlink{classBusFactory_a27b9e052143be949d9757e72a1e7a285}{Generate} (std\+::string name, \hyperlink{classRoute}{Route} $\ast$out, \hyperlink{classRoute}{Route} $\ast$in, double speed)
+\begin{DoxyCompactList}\small\item\em Generation of a bus with a name, route out and route in, capacity, and speed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The main class to generate the bus. 
+
+Calls to \hyperlink{classBusFactory_a27b9e052143be949d9757e72a1e7a285}{Generate} function to get a new instance of a bus object This is a static call, not requiring an instance to invoke the method. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classBusFactory_a27b9e052143be949d9757e72a1e7a285}\label{classBusFactory_a27b9e052143be949d9757e72a1e7a285}} 
+\index{Bus\+Factory@{Bus\+Factory}!Generate@{Generate}}
+\index{Generate@{Generate}!Bus\+Factory@{Bus\+Factory}}
+\subsubsection{\texorpdfstring{Generate()}{Generate()}}
+{\footnotesize\ttfamily \hyperlink{classBus}{Bus} $\ast$ Bus\+Factory\+::\+Generate (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{\hyperlink{classRoute}{Route} $\ast$}]{out,  }\item[{\hyperlink{classRoute}{Route} $\ast$}]{in,  }\item[{double}]{speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Generation of a bus with a name, route out and route in, capacity, and speed. 
+
+This function/constructor will be used for simulation purposes.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em bus} & name \\
+\hline
+\mbox{\tt in}  & {\em bus} & route goes outward \\
+\hline
+\mbox{\tt in}  & {\em bus} & route goes inward \\
+\hline
+\mbox{\tt in}  & {\em bus} & capacity, default is 60 \\
+\hline
+\mbox{\tt in}  & {\em bus} & speed, default is 1\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classBus}{Bus} object with name, route in, route out, capacity, and speed. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/liu00464/3081\+\_\+s20/repo-\/liu00464/project/src/\hyperlink{bus__factory_8h}{bus\+\_\+factory.\+h}\item 
+/home/liu00464/3081\+\_\+s20/repo-\/liu00464/project/src/\hyperlink{bus__factory_8cc}{bus\+\_\+factory.\+cc}\end{DoxyCompactItemize}
