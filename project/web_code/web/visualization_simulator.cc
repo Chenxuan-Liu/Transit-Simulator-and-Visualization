@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file visualization_simulator.cc
  *
@@ -11,14 +12,36 @@
 
 VisualizationSimulator::VisualizationSimulator(WebInterface*
 webI, ConfigManager* configM) {
+=======
+
+#include "visualization_simulator.h"
+
+#include "bus.h"
+#include "route.h"
+
+#include <iostream>
+
+VisualizationSimulator::VisualizationSimulator(WebInterface* webI, ConfigManager* configM, std::ostream* out) {
+>>>>>>> support-code
     webInterface_ = webI;
     configManager_ = configM;
+    paused_ = false;
+    out_ = out;
 }
 
 VisualizationSimulator::~VisualizationSimulator() {}
 
+<<<<<<< HEAD
 void VisualizationSimulator::Start(const std::
 vector<int>& busStartTimings, const int& numTimeSteps) {
+=======
+void VisualizationSimulator::TogglePause() {
+    std::cout << "Toggling Pause" << std::endl;
+    paused_ = !paused_;
+}
+
+void VisualizationSimulator::Start(const std::vector<int>& busStartTimings, const int& numTimeSteps) {
+>>>>>>> support-code
     busStartTimings_ = busStartTimings;
     numTimeSteps_ = numTimeSteps;
 
@@ -31,13 +54,19 @@ vector<int>& busStartTimings, const int& numTimeSteps) {
 
     prototypeRoutes_ = configManager_->GetRoutes();
     for (int i = 0; i < static_cast<int>(prototypeRoutes_.size()); i++) {
+<<<<<<< HEAD
         prototypeRoutes_[i]->Report(std::cout);
 
+=======
+        prototypeRoutes_[i]->Report(*out_);
+        
+>>>>>>> support-code
         prototypeRoutes_[i]->UpdateRouteData();
         webInterface_->UpdateRoute(prototypeRoutes_[i]->GetRouteData());
     }
 }
 
+<<<<<<< HEAD
 void VisualizationSimulator::Update() {
     if (!pausestate) {
         simulationTimeElapsed_++;
@@ -64,6 +93,31 @@ void VisualizationSimulator::Update() {
                 timeSinceLastBus_[i]--;
             }
         }
+=======
+bool VisualizationSimulator::Update() {
+    // Code called to update simulator. Will first check if 
+    // we are in a state where we can update (e.g., not paused, not finished)
+    // then call ExecuteUpdate() to actually call update if possible
+    // return whether or not ExecuteUpdate() was called
+    bool can_update = CanUpdate();
+    if (can_update) {
+        ExecuteUpdate();
+    }
+    return can_update;
+}
+
+bool VisualizationSimulator::CanUpdate() {
+    // Check whether or not simulator can update 
+    // maybe unable to update because paused, terminated, etcetra
+    // only cares about whether or not it is paused right now
+    return !paused_;
+}
+
+void VisualizationSimulator::ExecuteUpdate() {
+    // This function has the same text as what Update() used to have
+    // I added a gating mechanism for pause functionality
+    simulationTimeElapsed_++;
+>>>>>>> support-code
 
         std::cout << "~~~~~~~~~ Updating busses ";
         std::cout << "~~~~~~~~~" << std::endl;
@@ -83,16 +137,31 @@ void VisualizationSimulator::Update() {
             busses_[i]->Report(std::cout);
         }
 
+<<<<<<< HEAD
         std::cout << "~~~~~~~~~ Updating routes ";
         std::cout << "~~~~~~~~~" << std::endl;
         // Update routes
         for (int i = 0; i < static_cast<int>(prototypeRoutes_.size()); i++) {
             prototypeRoutes_[i]->Update();
+=======
+        busses_[i]->Report(*out_);
+    }
+    
+    std::cout << "~~~~~~~~~ Updating routes ";
+    std::cout << "~~~~~~~~~" << std::endl;
+    // Update routes
+    for (int i = 0; i < static_cast<int>(prototypeRoutes_.size()); i++) {
+        prototypeRoutes_[i]->Update();
+>>>>>>> support-code
 
             webInterface_->UpdateRoute(prototypeRoutes_[i]->GetRouteData());
 
+<<<<<<< HEAD
             prototypeRoutes_[i]->Report(std::cout);
         }
+=======
+        prototypeRoutes_[i]->Report(*out_);
+>>>>>>> support-code
     }
 }
 

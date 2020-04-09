@@ -2,6 +2,13 @@
 #include "my_web_server_command.h" 
 
 
+PauseCommand::PauseCommand(VisualizationSimulator* sim) : mySim(sim) {}
+
+void PauseCommand::execute(MyWebServerSession* session, picojson::value& command, MyWebServerSessionState* state) {
+    mySim->TogglePause();
+}
+
+
 GetRoutesCommand::GetRoutesCommand(MyWebServer* ws) : myWS(ws) {}
 void GetRoutesCommand::execute(MyWebServerSession* session, picojson::value& command, MyWebServerSessionState* state) {
     // Unsused input

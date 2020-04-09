@@ -19,7 +19,7 @@
   bool IsAtEnd() const;
   Stop * GetDestinationStop() const;
   double GetTotalRouteDistance() const;
-  Stop * NextStop() const;
+  Stop * ToNextStop() const;
   double GetNextStopDistance() const;
  private:
   int GenerateNewPassengers();			//generates passengers on its route*/
@@ -156,7 +156,7 @@ int main() {
       Stop * stop_arrived_at = CC_EB.GetDestinationStop();
       std::cout << std::endl << "Passengers getting on at: " << stop_arrived_at->GetId() << std::endl << std::endl;
       passengers_loaded_on_bus += stop_arrived_at->LoadPassengers(&campus_connector);
-      CC_EB.NextStop();
+      CC_EB.ToNextStop();
       EB_distance = CC_EB.GetNextStopDistance();
     }
     else if (WB_distance == 0) {
@@ -166,7 +166,7 @@ int main() {
       Stop * stop_arrived_at = CC_WB.GetDestinationStop();
       std::cout << std::endl << "Passengers getting on at: " << stop_arrived_at->GetId() << std::endl << std::endl;
       passengers_loaded_on_bus += stop_arrived_at->LoadPassengers(&campus_connector);
-      CC_WB.NextStop();
+      CC_WB.ToNextStop();
       WB_distance = CC_WB.GetNextStopDistance();
     }
     else if (EB_distance != -1) {

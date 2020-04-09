@@ -26,8 +26,13 @@ class Route {
   void Update();
   void Report(std::ostream&);
   bool IsAtEnd() const;
+<<<<<<< HEAD
 
   Stop *  PrevStop();  // Returns stop before destination stop
+=======
+  
+  Stop *  PrevStop(); // Returns stop before destination stop
+>>>>>>> support-code
   void ToNextStop();  // Change destination_stop_ to next stop
   Stop * GetDestinationStop() const;    // Get pointer to next stop
   double GetTotalRouteDistance() const;

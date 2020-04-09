@@ -22,6 +22,15 @@ public:
 };
 
 
+class PauseCommand : public MyWebServerCommand {
+    public:
+        PauseCommand(VisualizationSimulator* sim);
+        void execute(MyWebServerSession* session, picojson::value& command, MyWebServerSessionState* state) override;
+    private:
+        VisualizationSimulator* mySim;
+
+};
+
 ///***** * * * * * COMMANDS * * * * * ******///
 
 class GetRoutesCommand : public MyWebServerCommand {

@@ -18,6 +18,7 @@ class Bus;
 class Stop;
 
 class VisualizationSimulator {
+<<<<<<< HEAD
  public:
         VisualizationSimulator(WebInterface*, ConfigManager*);
         ~VisualizationSimulator();
@@ -27,6 +28,18 @@ class VisualizationSimulator {
         void Update();
 
  private:
+=======
+    public:
+        VisualizationSimulator(WebInterface*, ConfigManager*, std::ostream*);
+        ~VisualizationSimulator();
+
+        void Start(const std::vector<int>&, const int&);
+        bool Update();
+        bool CanUpdate();
+        void TogglePause();
+    private:
+        void ExecuteUpdate();
+>>>>>>> support-code
         WebInterface* webInterface_;
         ConfigManager* configManager_;
 
@@ -39,7 +52,12 @@ class VisualizationSimulator {
         std::vector<Bus *> busses_;
 
         int busId = 1000;
+<<<<<<< HEAD
         bool pausestate = false;
+=======
+        bool paused_;
+        std::ostream* out_;
+>>>>>>> support-code
 };
 
 #endif  // VISUALIZATION_SIMULATOR_H_
