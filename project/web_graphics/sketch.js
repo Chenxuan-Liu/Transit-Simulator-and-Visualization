@@ -28,8 +28,9 @@ var numTimeStepsSlider;
 var numTimeSteps;
 
 var startButton;
-var pauseButton;
 var started;
+var pauseButton;
+var paused = false;
 
 var simInfoYRectPos = 1; // Magic numbers for GUI elements
 var simInfoYPos = 15;
@@ -41,6 +42,7 @@ var busTimeOffsetsYOffset = 50;
 var runRectYPos = 450;
 var runYPos = 465;
 var startYPos = 500;
+var observedText = ""
 
 // Data for vis. Matches data_structs.h in C++
 function Position(x, y) {
@@ -122,6 +124,9 @@ function setupSocket() {
                     routes.push(new Route(id, route_stop_indices));
                 }
             }
+            if (data.command == "observe") {
+                observedText = data.text;
+            }
         } 
     } catch(exception) {
         alert('<p>Error' + exception);  
@@ -136,6 +141,21 @@ function setupSocket() {
     }
 }
 
+function mapClick(event) {
+    for (let i = 0; i < busses.length; i++) {
+        var pos = myMap.latLngToPixel(busses[i].position.x, busses[i].position.y);
+        pos.x = pos.x + imageX;
+        pos.y = pos.y + imageY;
+        
+        // If we are over the bus
+        if (abs(mouseX - pos.x) < 25 && abs(mouseY - pos.y) < 15) {
+            console.log("hit!!!");
+            socket.send(JSON.stringify({command: "listen", id: busses[i].id}));
+            return;
+        }
+    }
+    console.log("miss!!!");
+}
 
 
 
@@ -160,17 +180,16 @@ function setup() {
 
     startButton = createButton('Start');
     startButton.position(10, startYPos);
-    startButton.style('width', '200px');
+    startButton.style('width', '100px');
     startButton.style('height', '20px');
     startButton.mousePressed(start);    
 
-
     pauseButton = createButton('Pause');
-    pauseButton.position(10, startYPos+20);
-    pauseButton.value('Pause');
-    pauseButton.style('width', '200px');
+    pauseButton.position(110, startYPos);
+    pauseButton.style('width', '100px');
     pauseButton.style('height', '20px');
     pauseButton.mousePressed(pause);
+
     // Image/map information
     const options = {
         lat: 44.9765,
@@ -186,7 +205,11 @@ function setup() {
     imageHeight = options.height;
     const mappa = new Mappa('Mapbox', key);
     myMap = mappa.staticMap(options);
+    myMap.onClick = function() { console.log("map click");}
     mapImg = loadImage(myMap.imgUrl);
+    mapImg.onClick = function() { console.log('map click');}
+
+    document.getElementById("defaultCanvas0").onclick = mapClick;
 }
 
 function draw() {
@@ -195,6 +218,7 @@ function draw() {
     }
     render();
     drawGui();
+    drawObservedInfo();
     drawInfo();
 }
 
@@ -286,6 +310,7 @@ function drawGui() {
     fill(255, 255, 255, 50);
     rect(1, simInfoYRectPos, 205, 27);
     rect(1, runRectYPos, 205, 27);
+    rect(1+imageWidth+270, simInfoYRectPos, 270, imageHeight);
 
     fill(0);
 
@@ -303,21 +328,6 @@ function drawGui() {
     }
 }
 
-function pause() {
-    if (started)
-    {
-        if (pauseButton.value!=="Resume"){
-            pauseButton.value="Resume";
-            pauseButton.elt.childNodes[0].nodeValue ="Resume";
-        }
-        else {
-            pauseButton.value="Pause";
-            pauseButton.elt.childNodes[0].nodeValue ="Pause";
-        }
-        socket.send(JSON.stringify({command: "pause"}));
-    }
-}
-
 function start() {
     for (let i = 0; i < busTimeOffsetsSliders.length; i++) {
         busTimeOffsets[i] = busTimeOffsetsSliders[i].value();
@@ -326,10 +336,24 @@ function start() {
     numTimeSteps = numTimeStepsSlider.value();
     socket.send(JSON.stringify({command: "start", numTimeSteps: numTimeSteps, timeBetweenBusses: busTimeOffsets}));
     started = true;
-    startButton.elt.disabled = true;
     elapsedTime = millis();
     startTime = millis();
 }
+
+function pause() {
+    console.log("Pause button clicked");
+
+    if (started){
+        socket.send(JSON.stringify({command: "pause"}));
+        paused = !paused;
+        if (paused) {
+            pauseButton.elt.childNodes[0].nodeValue = 'Unpause';
+        } else {
+            pauseButton.elt.childNodes[0].nodeValue = 'Pause';
+        }
+    }
+}
+
 
 function initRouteSliders() {
     
@@ -374,3 +398,7 @@ function drawInfo() {
     }
 }
 
+
+function drawObservedInfo() {
+    text(observedText,1+imageWidth+270+5, simInfoYRectPos+200);
+}

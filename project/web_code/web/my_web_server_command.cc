@@ -1,5 +1,6 @@
 
 #include "my_web_server_command.h" 
+#include <sstream>
 
 
 GetRoutesCommand::GetRoutesCommand(MyWebServer* ws) : myWS(ws) {}
@@ -116,6 +117,7 @@ void StartCommand::execute(MyWebServerSession* session, picojson::value& command
 
 
 
+
 UpdateCommand::UpdateCommand(VisualizationSimulator* sim): mySim(sim) {}
 
 void UpdateCommand::execute(MyWebServerSession* session, picojson::value& command, MyWebServerSessionState* state) {
@@ -127,6 +129,43 @@ void UpdateCommand::execute(MyWebServerSession* session, picojson::value& comman
 }
 
 
+PauseCommand::PauseCommand(VisualizationSimulator* sim) : mySim(sim) {}
+
+void PauseCommand::execute(MyWebServerSession* session, picojson::value& command, MyWebServerSessionState* state) {
+    mySim->TogglePause();
+}
+
+
+class BusWebObserver : public IObserver {
+public:
+    BusWebObserver(MyWebServerSession* session) : session(session) {}
+
+    void UpdateObserver(BusData* info) override{ // This normally called update, but we call it Notify as per the lab writeup
+        picojson::object data;
+        data["command"] = picojson::value("observe");
+        std::stringstream ss;
+        ss << "Bus " << info->id << "\n";
+        ss << "-----------------------------\n";
+        ss << "  * Position: (" << info->position.x << "," << info->position.y << ")\n";
+        ss << "  * Passengers: " << info->num_passengers << "\n";
+        ss << "  * Capacity: " << info->capacity << "\n";
+        data["text"] = picojson::value(ss.str());
+        picojson::value ret(data);
+        session->sendJSON(ret);
+    }
+private:
+    MyWebServerSession* session;
+};
+
+AddListenerCommand::AddListenerCommand(VisualizationSimulator* sim) : mySim(sim) {}
+
+void AddListenerCommand::execute(MyWebServerSession* session, picojson::value& command, MyWebServerSessionState* state) {
+    mySim->ClearListeners();
+    std::cout << "starting AddListenerCommand::execute" << std::endl;
+    std::string id = command.get<picojson::object>()["id"].get<std::string>();
+    std::cout << id << std::endl;
+    mySim->AddListeners(&id, new BusWebObserver(session));
+}
 
 InitRoutesCommand::InitRoutesCommand(ConfigManager* configManager) : cm(configManager) {}
 
@@ -143,14 +182,4 @@ void InitRoutesCommand::execute(MyWebServerSession* session, picojson::value& co
     picojson::value ret(data);
     session->sendJSON(ret);
 
-}
-
-
-PauseCommand::PauseCommand(VisualizationSimulator* vis):mySim(vis){}
-
-void PauseCommand::execute(MyWebServerSession* session, picojson::value& command, MyWebServerSessionState* state) {
-    (void)session;
-    (void)state;
-    (void)command;
-    mySim->Pause();
 }
