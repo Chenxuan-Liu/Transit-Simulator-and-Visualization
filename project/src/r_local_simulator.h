@@ -10,9 +10,28 @@
 #include <string>
 #include "src/simulator.h"
 
+/**
+ * @brief Local simulator class for regression test
+ *
+ */
 class rLocalSimulator : public Simulator {
  public:
+/**
+  * @brief Setup of the local simulator
+  *
+  * @param none
+  * 
+  * @return return true or false for whether the function run successfully.
+  */
   bool Start() override;
+/**
+  * @brief Update for the local simulator
+  *
+  *
+  * @param none
+  * 
+  * @return return true or false for whether the function run successfully.
+  */
   bool Update() override;
  private:
   std::vector<int> bus_counters_;

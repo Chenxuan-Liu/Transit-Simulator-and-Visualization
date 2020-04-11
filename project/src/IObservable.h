@@ -24,7 +24,7 @@
 /**
  * @brief The Observable class
  *
- * This class derived Buss class.
+ * This class derived Buss class. 
  */
 class IObservable {
     std::vector<IObserver*> observer_;

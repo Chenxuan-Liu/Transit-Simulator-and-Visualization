@@ -53,11 +53,23 @@
  * After you click the "start" button, it should start generate buses.
  * There is another button “pause". After click this button, buses stop moving.
  * Click the "resume" button, the buses keeps going. 
- *\section Designing and Implementing the OBserverPattern
+ *\section Iteration2 Designing and Implementing the OBserverPattern
  * While implementing the observer pattern for observing information about a bus, I created three new classes. 
  * Three new class are IObserver.h,  IObservable.h, and IObserver.cc. In IObserver.h, it only has one
  * function called UpdateObserver(). It is override in my_web_server_command.cc file. This function is basically
- * print all the bus information on the right of the visualization website. The 
+ * print all the bus information on the right of the visualization website. In IObservable.h, I have three functions,
+ * which are NotifyObservers(), ClearObservers(), and RegisterObserver(). \n
+ * \image html Observer_UML.jpg "Observer Pattern Design" width=1024px
+ * The most difficult part of the design is understanding the observer pattern. Understanding the relationship
+ * between IObservable class and IObserver is important. Lab 14 instructions helps me a lot to understanding
+ * the observer pattern. The instructions on how to implement this two classes saves me a lot of time.
+ * To understand observer pattern, first you need to understand the subject and observer objects.
+ * The relation between subject and observer can easily be understood as an analogy to magazine
+ * subscription. The publisher of the magazine publisher, which is the subject, is in the business
+ * and publishes magazines, which is data. If the observer we are interested is having a new version,
+ * it will automaticaly notify us. The publish(object) does not know our information and how to use these
+ * data, it just deliver to us. \n
+ * 
  */
 
 #endif  // SRC_MAINPAGE_H_

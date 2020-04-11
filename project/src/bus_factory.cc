@@ -6,7 +6,6 @@
 
 
 #include "src/bus_factory.h"
-
 #include <ctime>
 
 Bus* BusFactory::Generate(std::string name) {
@@ -26,8 +25,27 @@ static int counter1 = 0;
 static int counter2 = 0;
 static int counter3 = 0;
 
+/**
+ * @brief The subclass of Strategy.
+ *
+ * Calls to \ref ReFacterBusFactory function to get a new instance of a bus object.
+ * This function override the pure virtual function in Strategy class. 
+ */
+
 class Strategy1:public Strategy {
  public:
+/**
+  * @brief Generation of a bus with a name, route out and route in, capacity, and speed. 
+  *
+  * This function is generating small bus and medium bus recursively based on the local time.
+  *
+  * @param[in] bus name
+  * @param[in] bus route goes outward
+  * @param[in] bus route goes inward
+  * @param[in] bus speed, default is 1
+  * 
+  * @return Bus pointer with name, outbound, inbound, and speed
+  */
   Bus* ReFacterBusFactory(std::string name, Route* outbound, Route*
         inbound, double speed) override {
     while (1){
@@ -42,8 +60,26 @@ class Strategy1:public Strategy {
   }
 };
 
+/**
+ * @brief The subclass of Strategy.
+ *
+ * Calls to \ref ReFacterBusFactory function to get a new instance of a bus object.
+ * This function override the pure virtual function in Strategy class. 
+ */
 class Strategy2:public Strategy {
  public:
+/**
+  * @brief Generation of a bus with a name, route out and route in, capacity, and speed. 
+  *
+  * This function is generating medium bus and large bus recursively based on the local time.
+  *
+  * @param[in] bus name
+  * @param[in] bus route goes outward
+  * @param[in] bus route goes inward
+  * @param[in] bus speed, default is 1
+  * 
+  * @return Bus pointer with name, outbound, inbound, and speed
+  */
   Bus* ReFacterBusFactory(std::string name, Route* outbound, Route*
         inbound, double speed) override {
     while (1){
@@ -58,8 +94,26 @@ class Strategy2:public Strategy {
   }
 };
 
+/**
+ * @brief The subclass of Strategy.
+ *
+ * Calls to \ref ReFacterBusFactory function to get a new instance of a bus object.
+ * This function override the pure virtual function in Strategy class. 
+ */
 class Strategy3:public Strategy {
  public:
+/**
+  * @brief Generation of a bus with a name, route out and route in, capacity, and speed. 
+  *
+  * This function is generating small bus, medium bus, and large bus recursively based on the local time.
+  *
+  * @param[in] bus name
+  * @param[in] bus route goes outward
+  * @param[in] bus route goes inward
+  * @param[in] bus speed, default is 1
+  * 
+  * @return Bus pointer with name, outbound, inbound, and speed
+  */
   Bus* ReFacterBusFactory(std::string name, Route* outbound, Route*
         inbound, double speed) override{
     while (1){
