@@ -3,33 +3,26 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
-#ifndef VISUALIZATION_SIMULATOR_H_
-#define VISUALIZATION_SIMULATOR_H_
+#ifndef WEB_VISUALIZATION_SIMULATOR_H_
+#define WEB_VISUALIZATION_SIMULATOR_H_
 
 #include <vector>
 #include <list>
+#include <string>
 
 #include "web_code/web/web_interface.h"
 #include "src/config_manager.h"
 #include "src/bus_factory.h"
+#include "src/IObservable.h"
 
 class Route;
 class Bus;
 class Stop;
+class IObserver;
+class BusDepot;
 
 class VisualizationSimulator {
-<<<<<<< HEAD
  public:
-        VisualizationSimulator(WebInterface*, ConfigManager*);
-        ~VisualizationSimulator();
-
-        void Start(const std::vector<int>&, const int&);
-        void Pause();
-        void Update();
-
- private:
-=======
-    public:
         VisualizationSimulator(WebInterface*, ConfigManager*, std::ostream*);
         ~VisualizationSimulator();
 
@@ -37,9 +30,11 @@ class VisualizationSimulator {
         bool Update();
         bool CanUpdate();
         void TogglePause();
-    private:
+        void ClearListeners();
+        void AddListeners(std::string*, IObserver*);
+
+ private:
         void ExecuteUpdate();
->>>>>>> support-code
         WebInterface* webInterface_;
         ConfigManager* configManager_;
 
@@ -52,12 +47,8 @@ class VisualizationSimulator {
         std::vector<Bus *> busses_;
 
         int busId = 1000;
-<<<<<<< HEAD
-        bool pausestate = false;
-=======
         bool paused_;
         std::ostream* out_;
->>>>>>> support-code
 };
 
-#endif  // VISUALIZATION_SIMULATOR_H_
+#endif  // WEB_VISUALIZATION_SIMULATOR_H_

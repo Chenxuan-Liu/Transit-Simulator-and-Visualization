@@ -4,8 +4,8 @@
  * @copyright 2020 Chenxuan Liu, All rights reserved.
  */
 
-#ifndef MAINPAGE_H_
-#define MAINPAGE_H_
+#ifndef SRC_MAINPAGE_H_
+#define SRC_MAINPAGE_H_
 
 /*! \mainpage Visual Transit System Simulator
  *
@@ -53,6 +53,11 @@
  * After you click the "start" button, it should start generate buses.
  * There is another button “pause". After click this button, buses stop moving.
  * Click the "resume" button, the buses keeps going. 
+ *\section Designing and Implementing the OBserverPattern
+ * While implementing the observer pattern for observing information about a bus, I created three new classes. 
+ * Three new class are IObserver.h,  IObservable.h, and IObserver.cc. In IObserver.h, it only has one
+ * function called UpdateObserver(). It is override in my_web_server_command.cc file. This function is basically
+ * print all the bus information on the right of the visualization website. The 
  */
 
-#endif  // MAINPAGE_H_
+#endif  // SRC_MAINPAGE_H_

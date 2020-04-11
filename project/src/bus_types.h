@@ -1,24 +1,32 @@
-#ifndef BUS_TYPES_H_
-#define BUS_TYPES_H_
+/**
+ * @file bus_types.h
+ *
+ * @copyright 2019 3081 Staff, All rights reserved.
+ */
 
-#include "./bus.h"
+#ifndef SRC_BUS_TYPES_H_
+#define SRC_BUS_TYPES_H_
+
+#include <string>
+
+#include "./src/bus.h"
 
 class SmallBus : public Bus {
-    public:
+ public:
         SmallBus(std::string name, Route* out, Route* in, double speed):
             Bus(name, out, in, 30, speed, "Small") { }
 };
 
 class MediumBus : public Bus {
-    public:
+ public:
         MediumBus(std::string name, Route* out, Route* in, double speed):
             Bus(name, out, in, 60, speed, "Medium") { }
 };
 
-class LargeBus : public Bus { 
-    public:
+class LargeBus : public Bus {
+ public:
         LargeBus(std::string name, Route* out, Route* in, double speed):
             Bus(name, out, in, 90, speed, "Large") { }
 };
 
-#endif 
+#endif  // SRC_BUS_TYPES_H_
