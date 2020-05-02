@@ -19,9 +19,10 @@
  * This class is just a template class. It only contains a pure virtual function which is called
  * UpdateObserver(). It is override in my_web_server.cc file. 
  */
+template <typename T>
 class IObserver {
  public:
-    virtual void UpdateObserver(BusData * info) = 0;
+    virtual void UpdateObserver(T info) = 0;
 };
 
 #endif  // SRC_IOBSERVER_H_

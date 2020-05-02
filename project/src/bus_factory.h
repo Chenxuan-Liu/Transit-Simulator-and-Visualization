@@ -85,6 +85,7 @@ class BusDepot {
   * @return Bus object with name, route in, route out, capacity, and speed.
   */
   Bus * generate();
+
  protected:
     std::string name_;
     Route* inbound_;

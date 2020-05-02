@@ -3,23 +3,26 @@
  *
  * @copyright 2019 3081 Staff, All rights reserved.
  */
-#ifndef WEB_VISUALIZATION_SIMULATOR_H_
-#define WEB_VISUALIZATION_SIMULATOR_H_
+#ifndef WEB_CODE_WEB_VISUALIZATION_SIMULATOR_H_
+#define WEB_CODE_WEB_VISUALIZATION_SIMULATOR_H_
 
 #include <vector>
 #include <list>
 #include <string>
+#include <sstream>
 
 #include "web_code/web/web_interface.h"
 #include "src/config_manager.h"
 #include "src/bus_factory.h"
 #include "src/IObservable.h"
+#include "src/file_writer_manager.h"
+#include "src/decorator.h"
 
 class Route;
 class Bus;
 class Stop;
-class IObserver;
 class BusDepot;
+
 
 class VisualizationSimulator {
  public:
@@ -31,7 +34,9 @@ class VisualizationSimulator {
         bool CanUpdate();
         void TogglePause();
         void ClearListeners();
-        void AddListeners(std::string*, IObserver*);
+        void ClearListenersStop();
+        void AddListeners(std::string*, IObserver<BusData*>*);
+        void AddListenerStop(std::string*, IObserver<Stop*>*);
 
  private:
         void ExecuteUpdate();
@@ -49,6 +54,7 @@ class VisualizationSimulator {
         int busId = 1000;
         bool paused_;
         std::ostream* out_;
+        std::string bus_stats_file_name = "BusData.csv";
 };
 
-#endif  // WEB_VISUALIZATION_SIMULATOR_H_
+#endif  // WEB_CODE_WEB_VISUALIZATION_SIMULATOR_H_

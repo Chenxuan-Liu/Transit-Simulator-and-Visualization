@@ -1,5 +1,10 @@
 {
     "cSpell.words": [
+        "bus",
+        "decortator",
         "stpo"
+    ],
+    "cSpell.ignoreWords": [
+        "myfile"
     ]
 }

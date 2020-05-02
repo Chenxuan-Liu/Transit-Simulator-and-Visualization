@@ -133,7 +133,8 @@ class Strategy3:public Strategy {
 
 Bus* BusDepot::generate() {
     time_t timer = time(NULL);
-    struct tm* now = localtime(&timer);
+    struct tm  buffer;
+    struct tm* now = localtime_r(&timer, &buffer);
     int time = now -> tm_hour;
 
 
