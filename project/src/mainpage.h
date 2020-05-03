@@ -93,7 +93,10 @@
  * modification. In advantage, this approach is valuable when the decorate pattern is not complex. It
  * is easy to implement. In disadvantage, once there are more decorate requirements, it will become complex.
  * And it is nightmare for maintence. This approach has a high coupling and low cohension. Every function
- * in decorate class are not related.  
+ * in decorate class are not related. \n
+ * In this iteration, the most difficult part is to understanding the simulation statistics and using
+ * template pattern to implement the observer pattern for both bus and stop class. Lab 16 instruction
+ * helped me to solve the statistic problem. Zybook material helps me understand template pattern.
  * 
  */
 
