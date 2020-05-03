@@ -60,8 +60,12 @@ double Bus::UpdateDistance() {
 }
 
 bool Bus::LoadPassenger(Passenger * new_passenger) {
-  return loader_->LoadPassenger(new_passenger,
-   passenger_max_capacity_, &passengers_);
+  if (loader_->LoadPassenger(new_passenger,
+   passenger_max_capacity_, &passengers_)) {
+     total_passenger++;
+     return true;
+  }
+  return false;
 }
 
 int Bus::HandleBusStop() {
@@ -117,10 +121,11 @@ void Bus::Update() {  // using common Update format
 
 void Bus::Report(std::ostream& out) {
   out << "Name: " << name_ << std::endl;
-  out << "Speed: " << speed_ << std::endl;
   out << "Bus Type: " << type_ << std::endl;
+  out << "Speed: " << speed_ << std::endl;
   out << "Distance to next stop: " << distance_remaining_ << std::endl;
   out << "\tPassengers (" << passengers_.size() << "): " << std::endl;
+  out << "Total Num of Passengers: "<< total_passenger << std::endl;
   for (std::list<Passenger *>::iterator it = passengers_.begin();
                                         it != passengers_.end(); it++) {
     (*it)->Report(out);
@@ -174,4 +179,21 @@ void Bus::UpdateBusData() {
 
 BusData Bus::GetBusData() const {
     return bus_data_;
+}
+
+void Bus::setColor(int r, int g, int b, int a) {
+  Color* color = new Color(r, g, b, a);
+  bus_data_.color = *color;
+}
+
+bool Bus::checkState() {
+  if (outgoing_route_->IsAtEnd()) {
+    return true;
+  }
+  return false;
+}
+
+
+void Bus::setDensity(int a) {
+  bus_data_.color.alpha = a;
 }

@@ -69,6 +69,34 @@
  * and publishes magazines, which is data. If the observer we are interested is having a new version,
  * it will automaticaly notify us. The publish(object) does not know our information and how to use these
  * data, it just deliver to us. \n
+ * \section Iteration3 Designing and Implementing the Decorator Pattern
+ * For implementing the decorator pattern, there are two ways of approach. The first option of makeing
+ * decorator pattern is create new subclasses for every decorator with a bus. Another option of implementing
+ * decorator pattern is adding instance variables to IBus base class to represent whether or not each bus 
+ * has a color decorator. \n
+ * \image html Decorator_UML.png "Decorator Pattern Design" width=1024px
+ * I use the second approach to implement the decorator pattern. In short, my design violates The Open-Closed
+ * Principle which states that classes should be open for extension and closed for modification. In advantage, 
+ * my implementation is an alternative to subclassing. Subclassing adds behavior at compile time, and the
+ * change affects all instance of the original class. Decorator pattern can provide new behavior at
+ * runtime for individual objects. In disadvantage, this decorator pattern can be complicated to have
+ * decorators keep tract of other decorators, because we have to go back to check multiple layers of
+ * the decorator chain stats to push the decorator pattern beyond its true intent. In this project,
+ * our bus layer is not complicated to track, so it is easier to understand in this way. Our decorator
+ * pattern exhibits temporal cohesion and informational cohesion.
+ * My decorator class exhibits temporal cohesion, because decorator perform are invoked at or near the same time.
+ * My decorator class exhibits informational cohesion, because the method in decorator
+ * class perform are services performed by bapplication domain objects.
+ * My decorator has a high cohension which means it has a low coupling. Low coupling means it is more
+ * readable and easy maintence. \n
+ * For the first approach to implement the decorator pattern, it is closed for extension and open for
+ * modification. In advantage, this approach is valuable when the decorate pattern is not complex. It
+ * is easy to implement. In disadvantage, once there are more decorate requirements, it will become complex.
+ * And it is nightmare for maintence. This approach has a high coupling and low cohension. Every function
+ * in decorate class are not related. \n
+ * In this iteration, the most difficult part is to understanding the simulation statistics and using
+ * template pattern to implement the observer pattern for both bus and stop class. Lab 16 instruction
+ * helped me to solve the statistic problem. Zybook material helps me understand template pattern.
  * 
  */
 

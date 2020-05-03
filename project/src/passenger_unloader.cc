@@ -10,6 +10,9 @@ int PassengerUnloader::UnloadPassengers(std::list<Passenger *> passengers,
   // TODO(wendt): may need to do end-of-life here
   // instead of in Passenger or Simulator
   int passengers_unloaded = 0;
+  std::ostringstream foo;
+  FileWriterManager* fwm = new FileWriterManager;
+  FileWriter* fw = fwm -> Getinstance();
   for (std::list<Passenger *>::iterator it = passengers.begin();
       it != passengers.end();
       it++) {
@@ -17,6 +20,8 @@ int PassengerUnloader::UnloadPassengers(std::list<Passenger *> passengers,
       // could be used to inform scheduler of end-of-life?
       // This could be a destructor issue as well.
       // *it->FinalUpdate();
+      (*it)-> Report(foo);
+      fw -> Write(passenger_file_name, Util::processOutput(foo));
       it = passengers.erase(it);
       // getting seg faults, probably due to reference deleted objects
       // here

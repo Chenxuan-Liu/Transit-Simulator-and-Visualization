@@ -18,6 +18,7 @@
 #include "src/route.h"
 #include "src/stop.h"
 #include "src/IObservable.h"
+#include "src/decorator.h"
 
 class PassengerUnloader;
 class PassengerLoader;
@@ -32,7 +33,7 @@ class Stop;
  */
 
 
-class Bus:public IObservable{
+class Bus:public IObservable<BusData*>, public IBus{
  public:
 /**
   * @brief Creat a new bus object with a name, out route, in route, capacity, and speed.
@@ -54,6 +55,9 @@ class Bus:public IObservable{
   bool Move();
   void Update();
   virtual void Report(std::ostream&);
+  void setColor(int, int, int, int) override;
+  bool checkState();
+  void setDensity(int) override;
 
   // Vis Getters
   void UpdateBusData();
@@ -62,6 +66,10 @@ class Bus:public IObservable{
   Stop * GetNextStop() const { return next_stop_; }
   size_t GetNumPassengers() const { return passengers_.size(); }
   int GetCapacity() const { return passenger_max_capacity_; }
+  void ClearPassenger() {passengers_.clear();}
+
+ protected:
+  int total_passenger = 0;
 
  private:
   int UnloadPassengers();  // returning revenue delta

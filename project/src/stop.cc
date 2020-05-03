@@ -48,6 +48,7 @@ void Stop::Update() {
                                     it != passengers_.end(); it++) {
     (*it)->Update();
   }
+  this->NotifyObservers(this);
 }
 
 int Stop::GetId() const {
